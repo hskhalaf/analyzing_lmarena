@@ -10,9 +10,15 @@ from collections import defaultdict, Counter
 import json
 import random
 from datetime import datetime
+import torch
+import torch.nn.functional as F
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 class PromptCategorizer:
     def __init__(self):
+        # CUDA setup
+        self.device = self.setup_cuda()
+        
         # Fine-grained prompt categories based on common LLM evaluation tasks
         self.prompt_categories = {
             # Reasoning & Problem Solving
@@ -68,6 +74,48 @@ class PromptCategorizer:
         self.category_distribution = defaultdict(int)
         self.prompt_length_stats = defaultdict(list)
         
+        # Model components for CUDA
+        self.tokenizer = None
+        self.model = None
+        
+    def setup_cuda(self):
+        """Setup CUDA device for GPU acceleration."""
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+            print(f"🚀 CUDA available! Using GPU: {torch.cuda.get_device_name(0)}")
+            print(f"   Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
+        elif torch.backends.mps.is_available():
+            device = torch.device("mps")
+            print("🚀 MPS (Apple Silicon) available!")
+        else:
+            device = torch.device("cpu")
+            print("⚠️  No GPU acceleration available, using CPU")
+        
+        return device
+    
+    def load_model_for_categorization(self, model_name="microsoft/DialoGPT-medium"):
+        """Load a model for prompt categorization using CUDA."""
+        try:
+            print(f"Loading tokenizer: {model_name}")
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            
+            print(f"Loading model: {model_name}")
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                torch_dtype=torch.float16 if self.device.type == "cuda" else torch.float32,
+                device_map=self.device if self.device.type == "cuda" else None
+            )
+            
+            if self.device.type == "cuda":
+                self.model = self.model.to(self.device)
+            
+            print(f"✅ Model loaded successfully on {self.device}!")
+            return True
+            
+        except Exception as e:
+            print(f"❌ Error loading model: {e}")
+            return False
+    
     def extract_prompts_from_dataset(self):
         """Extract all prompts from the Arena dataset."""
         print("="*80)
@@ -268,6 +316,84 @@ Categories:"""
 
         return categorization_prompt
     
+    def categorize_prompt_with_cuda(self, prompt_text, max_length=512):
+        """Categorize a prompt using CUDA-accelerated model inference."""
+        if not self.model or not self.tokenizer:
+            print("❌ Model not loaded. Call load_model_for_categorization() first.")
+            return None
+        
+        try:
+            # Create categorization prompt
+            full_prompt = self.create_categorization_prompt(prompt_text)
+            
+            # Tokenize input
+            inputs = self.tokenizer(
+                full_prompt, 
+                return_tensors="pt", 
+                truncation=True, 
+                max_length=max_length,
+                padding=True
+            )
+            
+            # Move to device
+            inputs = {k: v.to(self.device) for k, v in inputs.items()}
+            
+            # Generate response with CUDA
+            with torch.no_grad():
+                outputs = self.model.generate(
+                    inputs.input_ids,
+                    max_new_tokens=128,
+                    temperature=0.7,
+                    do_sample=True,
+                    pad_token_id=self.tokenizer.eos_token_id,
+                    attention_mask=inputs.attention_mask
+                )
+            
+            # Decode response
+            response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+            
+            # Extract the generated part (remove input prompt)
+            generated_text = response[len(full_prompt):].strip()
+            
+            # Parse categories from response
+            categories = self.parse_categorization_response(generated_text)
+            
+            return categories
+            
+        except Exception as e:
+            print(f"❌ Error in CUDA categorization: {e}")
+            return None
+    
+    def parse_categorization_response(self, response_text):
+        """Parse the model response to extract category names."""
+        if not response_text:
+            return []
+        
+        # Clean response and extract categories
+        response_clean = response_text.strip().lower()
+        
+        # Split by common separators
+        categories = []
+        for separator in [',', ';', '\n', 'and', '&']:
+            if separator in response_clean:
+                parts = response_clean.split(separator)
+                categories = [part.strip() for part in parts if part.strip()]
+                break
+        
+        # If no separators found, treat as single category
+        if not categories:
+            categories = [response_clean]
+        
+        # Filter to only include valid categories
+        valid_categories = []
+        for cat in categories:
+            # Remove common prefixes/suffixes
+            cat_clean = cat.replace('category:', '').replace('categories:', '').strip()
+            if cat_clean and cat_clean != 'other':
+                valid_categories.append(cat_clean)
+        
+        return valid_categories[:5]  # Limit to 5 categories max
+    
     def save_prompts_for_analysis(self):
         """Save extracted prompts and analysis for external categorization."""
         output_dir = Path("prompt_analysis")
@@ -344,6 +470,17 @@ Categories:"""
             print("Failed to extract prompts. Exiting.")
             return
         
+        # Load model for CUDA categorization
+        print(f"\n🚀 LOADING MODEL FOR CUDA CATEGORIZATION")
+        if self.load_model_for_categorization():
+            print("✅ Model loaded successfully!")
+            
+            # Run CUDA categorization on sample prompts
+            print(f"\n🤖 RUNNING CUDA CATEGORIZATION ON SAMPLE PROMPTS")
+            self.run_cuda_categorization()
+        else:
+            print("⚠️  Model loading failed, continuing with external analysis only")
+        
         # Save prompts for external analysis
         output_dir = self.save_prompts_for_analysis()
         
@@ -358,6 +495,72 @@ Categories:"""
         print(f"- Use a consistent prompt format for reliable results")
         print(f"- Consider batching prompts for efficiency")
         print(f"- Validate categories against the definitions in category_definitions.json")
+    
+    def run_cuda_categorization(self, sample_size=50):
+        """Run CUDA-accelerated categorization on sample prompts."""
+        if not self.prompt_samples:
+            print("❌ No prompt samples available for categorization")
+            return
+        
+        print(f"🔍 Running CUDA categorization on {min(sample_size, len(self.prompt_samples))} sample prompts...")
+        
+        categorized_prompts = []
+        successful_categorizations = 0
+        
+        for i, sample in enumerate(self.prompt_samples[:sample_size]):
+            if i % 10 == 0:
+                print(f"Processing sample {i+1}/{min(sample_size, len(self.prompt_samples))}...")
+            
+            prompt_text = sample['prompt'].replace("...", "").strip()
+            
+            # Run CUDA categorization
+            categories = self.categorize_prompt_with_cuda(prompt_text)
+            
+            if categories:
+                successful_categorizations += 1
+                categorized_prompts.append({
+                    'prompt': prompt_text,
+                    'categories': categories,
+                    'word_count': sample['word_count'],
+                    'char_count': sample['char_count']
+                })
+                
+                # Update category distribution
+                for cat in categories:
+                    self.category_distribution[cat] += 1
+        
+        print(f"✅ CUDA categorization complete!")
+        print(f"  Successful categorizations: {successful_categorizations}/{min(sample_size, len(self.prompt_samples))}")
+        print(f"  Categories discovered: {len(self.category_distribution)}")
+        
+        # Show top categories
+        if self.category_distribution:
+            print(f"\n📊 TOP CATEGORIES DISCOVERED:")
+            top_categories = sorted(self.category_distribution.items(), key=lambda x: x[1], reverse=True)[:10]
+            for cat, count in top_categories:
+                print(f"  {cat}: {count} prompts")
+        
+        # Save CUDA categorization results
+        self.save_cuda_categorization_results(categorized_prompts)
+    
+    def save_cuda_categorization_results(self, categorized_prompts):
+        """Save the CUDA categorization results."""
+        output_dir = Path("prompt_analysis")
+        output_dir.mkdir(exist_ok=True)
+        
+        # Save CUDA categorization results
+        cuda_results_file = output_dir / "cuda_categorization_results.json"
+        with open(cuda_results_file, 'w', encoding='utf-8') as f:
+            json.dump(categorized_prompts, f, indent=2)
+        
+        # Save category distribution
+        category_dist_file = output_dir / "cuda_category_distribution.json"
+        with open(category_dist_file, 'w', encoding='utf-8') as f:
+            json.dump(dict(self.category_distribution), f, indent=2)
+        
+        print(f"\n💾 CUDA categorization results saved:")
+        print(f"  - cuda_categorization_results.json: {len(categorized_prompts)} categorized prompts")
+        print(f"  - cuda_category_distribution.json: Category distribution")
 
 if __name__ == "__main__":
     categorizer = PromptCategorizer()

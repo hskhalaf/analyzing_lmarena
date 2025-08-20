@@ -65,18 +65,23 @@ Prompt 3: category2, category5
 Now analyze the prompts and provide your taxonomy:"""
 
     def load_model(self):
-        """Load the Llama 3.2-3B-Instruct model."""
+        """Load the Llama 3.2-3B-Instruct model with CUDA acceleration."""
         print("="*80)
-        print("LOADING LLAMA 3.2-3B-INSTRUCT MODEL")
+        print("LOADING LLAMA 3.2-3B-INSTRUCT MODEL WITH CUDA")
         print("="*80)
         
-        # Check MPS availability
-        if torch.backends.mps.is_available():
-            print("🚀 MPS (Apple Silicon) acceleration available!")
+        # Check CUDA availability
+        if torch.cuda.is_available():
+            device = "cuda"
+            print(f"🚀 CUDA available! Using GPU: {torch.cuda.get_device_name(0)}")
+            print(f"   Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
+            print(f"   CUDA version: {torch.version.cuda}")
+        elif torch.backends.mps.is_available():
             device = "mps"
+            print("🚀 MPS (Apple Silicon) acceleration available!")
         else:
-            print("⚠️  MPS not available, using CPU")
             device = "cpu"
+            print("⚠️  No GPU acceleration available, using CPU")
         
         try:
             print(f"Loading tokenizer: {self.model_name}")
@@ -85,13 +90,18 @@ Now analyze the prompts and provide your taxonomy:"""
             print(f"Loading model: {self.model_name}")
             self.model = AutoModelForCausalLM.from_pretrained(
                 self.model_name,
-                torch_dtype=torch.float16,
-                device_map=device,
+                torch_dtype=torch.float16 if device == "cuda" else torch.float32,
+                device_map=device if device == "cuda" else None,
                 trust_remote_code=True
             )
             
+            # Move model to device if not using device_map
+            if device != "cuda" or self.model.device.type != "cuda":
+                self.model = self.model.to(device)
+            
             print("✅ Model loaded successfully!")
             print(f"📱 Device: {device}")
+            print(f"📍 Model location: {next(self.model.parameters()).device}")
             return True
             
         except Exception as e:
@@ -174,27 +184,31 @@ Now analyze the prompts and provide your taxonomy:"""
         return full_prompt, batch_prompts
     
     def generate_categories_with_llama(self, prompt_text):
-        """Generate categories using the loaded Llama model."""
+        """Generate categories using the loaded Llama model with CUDA acceleration."""
         if not self.model or not self.tokenizer:
             print("❌ Model not loaded")
             return None
         
         try:
+            # Get device from model
+            device = next(self.model.parameters()).device
+            
             # Tokenize input
             inputs = self.tokenizer(prompt_text, return_tensors="pt", truncation=True, max_length=2048)
             
-            # Move to MPS if available
-            if torch.backends.mps.is_available():
-                inputs = {k: v.to("mps") for k, v in inputs.items()}
+            # Move inputs to the same device as the model
+            inputs = {k: v.to(device) for k, v in inputs.items()}
             
-            # Generate response
+            # Generate response with CUDA acceleration
             with torch.no_grad():
                 outputs = self.model.generate(
                     inputs.input_ids,
                     max_new_tokens=1024,
                     temperature=0.7,
                     do_sample=True,
-                    pad_token_id=self.tokenizer.eos_token_id
+                    pad_token_id=self.tokenizer.eos_token_id,
+                    attention_mask=inputs.attention_mask,
+                    use_cache=True
                 )
             
             # Decode response

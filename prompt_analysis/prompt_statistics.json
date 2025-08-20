@@ -1,0 +1,18 @@
+{
+  "total_prompts": 130596,
+  "sample_count": 1317,
+  "length_statistics": {
+    "word_count": {
+      "mean": 48.01464057092101,
+      "median": 13,
+      "min": 1,
+      "max": 11651
+    },
+    "char_count": {
+      "mean": 374.061586878618,
+      "median": 81,
+      "min": 11,
+      "max": 119164
+    }
+  }
+}

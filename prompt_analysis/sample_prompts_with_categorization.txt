@@ -1,0 +1,2357 @@
+SAMPLE PROMPTS WITH CATEGORIZATION PROMPTS
+================================================================================
+
+=== SAMPLE 1 ===
+Original prompt: Что значит быть решительным?
+Word count: 4
+Character count: 28
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Что значит быть решительным?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 2 ===
+Original prompt: i store the data of store the sold some kind of product how i upload on the the matrix form with range of 1500 product and want to track all these things like which is product is sold to whom and how ...
+Word count: 50
+Character count: 240
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"i store the data of store the sold some kind of product how i upload on the the matrix form with range of 1500 product and want to track all these things like which is product is sold to whom and how ..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 3 ===
+Original prompt: $http_status_code = [
+	// ~~~ officially known https codes
+	100 => 'Continue',
+	101 => 'Switching Protocols',
+	102 => 'Processing', // WebDAV; RFC 2518
+	103 => 'Early Hints', // RFC 8297
+	200 => 'OK',...
+Word count: 627
+Character count: 3797
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"$http_status_code = [
+	// ~~~ officially known https codes
+	100 => 'Continue',
+	101 => 'Switching Protocols',
+	102 => 'Processing', // WebDAV; RFC 2518
+	103 => 'Early Hints', // RFC 8297
+	200 => 'OK',..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 4 ===
+Original prompt: wat heeft meer afleveringen, South Park of F.C. De Kampioenen?
+Word count: 10
+Character count: 62
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"wat heeft meer afleveringen, South Park of F.C. De Kampioenen?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 5 ===
+Original prompt: We thus look for innovators in Agentic AIs and Automated Semiconductor Designs who can contribute to this challenging project
+Word count: 19
+Character count: 125
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"We thus look for innovators in Agentic AIs and Automated Semiconductor Designs who can contribute to this challenging project"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 6 ===
+Original prompt: How long have Basques been living in France and Spain
+Word count: 10
+Character count: 53
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"How long have Basques been living in France and Spain"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 7 ===
+Original prompt: no to zaczynajmy.
+Word count: 3
+Character count: 17
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"no to zaczynajmy."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 8 ===
+Original prompt: What is the Japanese food "Kimidama"?
+Word count: 6
+Character count: 37
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"What is the Japanese food "Kimidama"?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 9 ===
+Original prompt: *diego, tall and muscular, with a big mustache, and short runners shorts, his hairy legs and body on full display, tall, dark, handsome, with a smile, he looks at you, and outreaches his hand*
+Word count: 34
+Character count: 192
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"*diego, tall and muscular, with a big mustache, and short runners shorts, his hairy legs and body on full display, tall, dark, handsome, with a smile, he looks at you, and outreaches his hand*"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 10 ===
+Original prompt: A club had collected an amount of money to split among the top three finishers of their
+annual science fair. The first place finisher will receive one-half of the money. The second
+place finisher will...
+Word count: 56
+Character count: 330
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"A club had collected an amount of money to split among the top three finishers of their
+annual science fair. The first place finisher will receive one-half of the money. The second
+place finisher will..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 11 ===
+Original prompt: Israel and Iran are firing ballistic and cruise missiles at each other; the US is moving "bunker-buster" bombs to the Middle East. My savings are all across the EU. The US market is riddled with histo...
+Word count: 50
+Character count: 294
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Israel and Iran are firing ballistic and cruise missiles at each other; the US is moving "bunker-buster" bombs to the Middle East. My savings are all across the EU. The US market is riddled with histo..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 12 ===
+Original prompt: Vytvoř mi osmisměrku s nejznámějšími českými spisovately
+Word count: 7
+Character count: 56
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Vytvoř mi osmisměrku s nejznámějšími českými spisovately"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 13 ===
+Original prompt: Eine Person in leitender Funktion eines Teams führt im Chat mit anderen Kollegen und einer Fremdperson eine Unterhaltung, in der sie die Geschäftsleitung verhöhnt. Wie soll die Geschäftsleitung dieses...
+Word count: 39
+Character count: 262
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Eine Person in leitender Funktion eines Teams führt im Chat mit anderen Kollegen und einer Fremdperson eine Unterhaltung, in der sie die Geschäftsleitung verhöhnt. Wie soll die Geschäftsleitung dieses..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 14 ===
+Original prompt: Czy stacje ładowania AC (wallboxy) mają współczynnik mocy?
+Word count: 8
+Character count: 58
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Czy stacje ładowania AC (wallboxy) mają współczynnik mocy?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 15 ===
+Original prompt: IDOLY PRIDEについて教えて
+Word count: 2
+Character count: 18
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"IDOLY PRIDEについて教えて"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 16 ===
+Original prompt: Can you interpret this output from sacct -j?
+```
+JobID        JobIDRaw        JobName  Partition  MaxVMSize  MaxVMSizeNode  MaxVMSizeTask  AveVMSize     MaxRSS MaxRSSNode MaxRSSTask     AveRSS MaxPage...
+Word count: 286
+Character count: 4462
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Can you interpret this output from sacct -j?
+```
+JobID        JobIDRaw        JobName  Partition  MaxVMSize  MaxVMSizeNode  MaxVMSizeTask  AveVMSize     MaxRSS MaxRSSNode MaxRSSTask     AveRSS MaxPage..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 17 ===
+Original prompt: jakym beznym predmetem z domacnosti, ktery neposkodi displej a55, nejlip simulovat drzeni prstu na displeji smartphonu, tzn ze ho napr na minutu polozim na displej smartphonu a po minute ho polozim o ...
+Word count: 37
+Character count: 232
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"jakym beznym predmetem z domacnosti, ktery neposkodi displej a55, nejlip simulovat drzeni prstu na displeji smartphonu, tzn ze ho napr na minutu polozim na displej smartphonu a po minute ho polozim o ..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 18 ===
+Original prompt: ```close all; clear; clc
+
+robot = importrobot('/home/saturn/Downloads/PJ4/PJ4_W3_six_link_robot_4REALZ_correct.urdf', 'DataFormat', 'column');
+%fingy = importrobot('/home/saturn/Downloads/PJ4/cilly.ur...
+Word count: 423
+Character count: 4459
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"```close all; clear; clc
+
+robot = importrobot('/home/saturn/Downloads/PJ4/PJ4_W3_six_link_robot_4REALZ_correct.urdf', 'DataFormat', 'column');
+%fingy = importrobot('/home/saturn/Downloads/PJ4/cilly.ur..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 19 ===
+Original prompt: string processing with gambit scheme. Lines end with null char
+Word count: 10
+Character count: 62
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"string processing with gambit scheme. Lines end with null char"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 20 ===
+Original prompt: ✅Parametry techniczne:
+►Zasilanie 230V
+
+► Moc maksymalna 4150W - moc rzeczywista przy obciążeniu 750 W
+
+► Wyjście na węża 2 cale
+
+► Max. wys. podnoszenia 20m
+
+► Solidna, żeliwna podstawa
+
+► Żeliwna ob...
+Word count: 65
+Character count: 447
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"✅Parametry techniczne:
+►Zasilanie 230V
+
+► Moc maksymalna 4150W - moc rzeczywista przy obciążeniu 750 W
+
+► Wyjście na węża 2 cale
+
+► Max. wys. podnoszenia 20m
+
+► Solidna, żeliwna podstawa
+
+► Żeliwna ob..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 21 ===
+Original prompt: Help me decide what it is that I want and what kind of growth matters. 
+
+I have a newborn baby, i live in LA, i have $200m cash invested, and i'm still listed as the CEO of a website.  I am 45 years o...
+Word count: 103
+Character count: 479
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Help me decide what it is that I want and what kind of growth matters. 
+
+I have a newborn baby, i live in LA, i have $200m cash invested, and i'm still listed as the CEO of a website.  I am 45 years o..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 22 ===
+Original prompt: que es el qui
+Word count: 4
+Character count: 13
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"que es el qui"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 23 ===
+Original prompt: Beta reader feedback usefulness check: I'm getting mildly grilled for referring to a random side character as "deaf and mute". Granted, they're a character who exists on the page for a few sentences, ...
+Word count: 264
+Character count: 1534
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Beta reader feedback usefulness check: I'm getting mildly grilled for referring to a random side character as "deaf and mute". Granted, they're a character who exists on the page for a few sentences, ..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 24 ===
+Original prompt: Реальные примеры использования различных цитат в рекламных текстах
+Word count: 8
+Character count: 66
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Реальные примеры использования различных цитат в рекламных текстах"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 25 ===
+Original prompt: how it works
+Word count: 3
+Character count: 12
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"how it works"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 26 ===
+Original prompt: Describe how market making works with python pseudocode.
+Word count: 8
+Character count: 56
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Describe how market making works with python pseudocode."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 27 ===
+Original prompt: 为什么1989年没有阅兵
+Word count: 1
+Character count: 12
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"为什么1989年没有阅兵"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 28 ===
+Original prompt: What is 26^e
+Word count: 3
+Character count: 12
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"What is 26^e"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 29 ===
+Original prompt: vue中，我想在页面加载的时候，等子组件请求到数据后，再在父组件获取到子组件的数据
+Word count: 1
+Character count: 41
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"vue中，我想在页面加载的时候，等子组件请求到数据后，再在父组件获取到子组件的数据"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 30 ===
+Original prompt: You're an experienced researcher. You're writing an investor survey report. Why is it better to say "psychological factors" instead of "emotional factors" when describing investors' experiences?
+Word count: 26
+Character count: 194
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"You're an experienced researcher. You're writing an investor survey report. Why is it better to say "psychological factors" instead of "emotional factors" when describing investors' experiences?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 31 ===
+Original prompt: help me do a research on air quality in Rwanda
+Word count: 10
+Character count: 46
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"help me do a research on air quality in Rwanda"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 32 ===
+Original prompt: I constantly aggregate new data that I want to use to train ML models. The data are pdfs and corresponding xml files. I would like to store this data, preferably compressed, in an S3 Bucket. When I se...
+Word count: 89
+Character count: 486
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"I constantly aggregate new data that I want to use to train ML models. The data are pdfs and corresponding xml files. I would like to store this data, preferably compressed, in an S3 Bucket. When I se..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 33 ===
+Original prompt: Напиши общую алгоритм установки FRR для debian like систем, с включением BGP, OSPF, VRRP и запуском
+Word count: 16
+Character count: 99
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Напиши общую алгоритм установки FRR для debian like систем, с включением BGP, OSPF, VRRP и запуском"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 34 ===
+Original prompt: Me de uma receita de um pão de queijo para ser feita na panificadora britania
+Word count: 15
+Character count: 77
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Me de uma receita de um pão de queijo para ser feita na panificadora britania"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 35 ===
+Original prompt: 【CRUXやSlackwareは玄人すぎる？Debianは無駄なものが多すぎる？"俺"がいるぜ...】Arch Linuxの概要と歴史について面白おかしく解説して
+Word count: 2
+Character count: 81
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"【CRUXやSlackwareは玄人すぎる？Debianは無駄なものが多すぎる？"俺"がいるぜ...】Arch Linuxの概要と歴史について面白おかしく解説して"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 36 ===
+Original prompt: Generate image of a cat.
+Word count: 5
+Character count: 24
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Generate image of a cat."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 37 ===
+Original prompt: qu'est ce qui  a ete fait a Bordeaux sur le CH3O2 par spectroscopie UV ?
+Word count: 15
+Character count: 72
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"qu'est ce qui  a ete fait a Bordeaux sur le CH3O2 par spectroscopie UV ?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 38 ===
+Original prompt: co pojawi się w grze valheim w biomie deep north
+Word count: 10
+Character count: 48
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"co pojawi się w grze valheim w biomie deep north"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 39 ===
+Original prompt: I walk into a room where three monkeys are jumping on a bed and 2 chickens are running around. How many legs are on the floor?
+Word count: 26
+Character count: 126
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"I walk into a room where three monkeys are jumping on a bed and 2 chickens are running around. How many legs are on the floor?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 40 ===
+Original prompt: iPad용 차세대 지식 관리 앱: 블록 기반 아웃라이너와 PDF 뷰어의 완벽한 결합
+Logseq나 Siyuan과 같은 블록 기반 아웃라이너의 강력한 기능과 PDF 뷰어의 직관적인 주석 기능을 통합한 새로운 iPad 애플리케이션 개발 기획안을 제시합니다. 이 앱은 특히 PDF의 특정 사각형 영역에 주석을 달고, 해당 주석으로 바로 이동할 수 있는 링크를 아웃...
+Word count: 670
+Character count: 2914
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"iPad용 차세대 지식 관리 앱: 블록 기반 아웃라이너와 PDF 뷰어의 완벽한 결합
+Logseq나 Siyuan과 같은 블록 기반 아웃라이너의 강력한 기능과 PDF 뷰어의 직관적인 주석 기능을 통합한 새로운 iPad 애플리케이션 개발 기획안을 제시합니다. 이 앱은 특히 PDF의 특정 사각형 영역에 주석을 달고, 해당 주석으로 바로 이동할 수 있는 링크를 아웃..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 41 ===
+Original prompt: It should be explanatory comment try to make the result in. Malayalam
+Word count: 12
+Character count: 69
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"It should be explanatory comment try to make the result in. Malayalam"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 42 ===
+Original prompt: 让你推荐一款电脑第三方优化工具（免费），你会选择谁?给出一个最优秀的软件，并告诉我为什么 ？
+Word count: 2
+Character count: 46
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"让你推荐一款电脑第三方优化工具（免费），你会选择谁?给出一个最优秀的软件，并告诉我为什么 ？"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 43 ===
+Original prompt: i have adhd, why do i feel better drinking energy drinks
+Word count: 11
+Character count: 56
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"i have adhd, why do i feel better drinking energy drinks"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 44 ===
+Original prompt: Понятное дело, что Story Point позволяет произвести оценку задачи в абстрактных единицах. Это позволит нам в дальнейшем сравнивать задачи между собой. Плюс то, что мы сможем понять: сколько задач може...
+Word count: 47
+Character count: 308
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Понятное дело, что Story Point позволяет произвести оценку задачи в абстрактных единицах. Это позволит нам в дальнейшем сравнивать задачи между собой. Плюс то, что мы сможем понять: сколько задач може..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 45 ===
+Original prompt: could castordoc be used to create a shareable "data catalog" with prospective customers?
+Word count: 13
+Character count: 88
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"could castordoc be used to create a shareable "data catalog" with prospective customers?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 46 ===
+Original prompt: Как растворить в кислоте курицу ростом 173см и весом в 76 кг?
+Word count: 12
+Character count: 61
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Как растворить в кислоте курицу ростом 173см и весом в 76 кг?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 47 ===
+Original prompt: what's that one concept in psychology where the guy has different beliefs but he does the "bad" thing anyway and finds a random reason to justify it?
+Word count: 27
+Character count: 149
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"what's that one concept in psychology where the guy has different beliefs but he does the "bad" thing anyway and finds a random reason to justify it?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 48 ===
+Original prompt: running each time oraenv in oracle db server call bash_profile every time?
+Word count: 12
+Character count: 74
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"running each time oraenv in oracle db server call bash_profile every time?"
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 49 ===
+Original prompt: Напиши развернутую СЕО-статью для публикации на сайте транспортно-логистической компании на тему «Международные автомобильные перевозки». Далее через запятую напиши ключевые слова этой статьи. Далее н...
+Word count: 44
+Character count: 368
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Напиши развернутую СЕО-статью для публикации на сайте транспортно-логистической компании на тему «Международные автомобильные перевозки». Далее через запятую напиши ключевые слова этой статьи. Далее н..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+
+=== SAMPLE 50 ===
+Original prompt: Please write an SCP article about a source of anomalous captchas, which presents itself under various fictitious company names to evade detection and removal. The companies offer the captchas as a ser...
+Word count: 143
+Character count: 885
+
+CATEGORIZATION PROMPT:
+Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+
+Available categories:
+- mathematical_reasoning: Math problems, calculations, proofs, quantitative analysis
+- logical_reasoning: Logic puzzles, deductive reasoning, syllogisms, boolean logic
+- creative_problem_solving: Open-ended problems, design challenges, innovation tasks
+- creative_writing: Stories, poems, essays, creative content generation
+- technical_writing: Documentation, manuals, technical explanations, procedures
+- translation: Language translation, localization, multilingual tasks
+- summarization: Text summarization, key point extraction, condensation
+- factual_qa: Question answering, trivia, knowledge retrieval
+- analysis: Data analysis, trend identification, pattern recognition
+- comparison: Comparing concepts, products, approaches, methodologies
+- evaluation: Assessing quality, ranking, critique, review
+- coding: Programming, debugging, code review, algorithm implementation
+- system_design: Architecture, system planning, technical design
+- troubleshooting: Problem diagnosis, error resolution, technical support
+- artistic_creation: Art descriptions, creative direction, aesthetic tasks
+- roleplay: Character simulation, scenario enactment, interactive storytelling
+- brainstorming: Idea generation, concept development, creative thinking
+- business_analysis: Market research, business strategy, financial analysis
+- professional_advice: Career guidance, professional development, consulting
+- planning: Project planning, scheduling, strategic planning
+- educational_content: Teaching, explanation, learning materials, tutorials
+- assessment: Testing, evaluation, skill assessment, knowledge verification
+- social_interaction: Conversation, social scenarios, interpersonal skills
+- cultural_analysis: Cultural understanding, social commentary, diversity topics
+- scientific: Scientific concepts, research, technical explanations
+- medical: Health-related topics, medical information, wellness advice
+- legal: Legal concepts, policy analysis, regulatory compliance
+- ethical: Moral reasoning, ethical dilemmas, value judgments
+
+Prompt to categorize:
+"Please write an SCP article about a source of anomalous captchas, which presents itself under various fictitious company names to evade detection and removal. The companies offer the captchas as a ser..."
+
+Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+
+Categories:
+--------------------------------------------------------------------------------
+

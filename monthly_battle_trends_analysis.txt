@@ -1,0 +1,134 @@
+====================================================================================================
+MONTHLY BATTLE TRENDS ANALYSIS - SAVED OUTPUT
+Tracking battles per month for each model and analyzing category trends
+====================================================================================================
+
+MONTHLY BATTLE TRENDS BY MODEL
+================================================================================
+
+Months available: 2025-04, 2025-05, 2025-06, 2025-07
+
+ALL 53 MODELS - MONTHLY BREAKDOWN:
+Model                                              Category     Total    2025-04  | 2025-05  | 2025-06  | 2025-07 
+------------------------------------------------------------------------------------------------------------------
+claude-opus-4-20250514                             Proprietary  10,092   0        | 2930     | 5275     | 1887    
+gemini-2.5-flash                                   Proprietary  9,668    0        | 1766     | 4417     | 3485    
+gemini-2.5-pro                                     Proprietary  9,219    0        | 1388     | 4334     | 3497    
+mistral-medium-2505                                Open-Source  9,135    0        | 1836     | 4300     | 2999    
+qwen3-235b-a22b-no-thinking                        Open-Source  9,076    0        | 474      | 5292     | 3310    
+o3-2025-04-16                                      Proprietary  8,529    670      | 1600     | 2779     | 3480    
+claude-sonnet-4-20250514                           Proprietary  8,295    0        | 2468     | 3845     | 1982    
+chatgpt-4o-latest-20250326                         Proprietary  7,650    1272     | 2187     | 2255     | 1936    
+gemma-3-27b-it                                     Open-Source  7,326    691      | 1709     | 3202     | 1724    
+claude-3-7-sonnet-20250219-thinking-32k            Proprietary  7,149    0        | 1882     | 3268     | 1999    
+claude-3-7-sonnet-20250219                         Proprietary  6,852    759      | 1671     | 2357     | 2065    
+command-a-03-2025                                  Proprietary  6,838    0        | 1876     | 3104     | 1858    
+claude-3-5-sonnet-20241022                         Proprietary  6,817    1112     | 1830     | 1963     | 1912    
+o3-mini                                            Proprietary  6,624    901      | 1624     | 2234     | 1865    
+deepseek-r1-0528                                   Open-Source  6,554    0        | 708      | 4284     | 1562    
+gpt-4.1-2025-04-14                                 Proprietary  6,540    879      | 1583     | 2189     | 1889    
+o4-mini-2025-04-16                                 Proprietary  6,477    700      | 1664     | 2177     | 1936    
+claude-3-5-haiku-20241022                          Proprietary  6,466    683      | 1660     | 2224     | 1899    
+amazon.nova-pro-v1:0                               Proprietary  6,383    0        | 2008     | 2524     | 1851    
+claude-opus-4-20250514-thinking-16k                Proprietary  6,157    0        | 0        | 4222     | 1935    
+gpt-4.1-mini-2025-04-14                            Proprietary  6,121    341      | 1657     | 2264     | 1859    
+deepseek-v3-0324                                   Open-Source  6,117    335      | 1700     | 2228     | 1854    
+gemini-2.0-flash-001                               Proprietary  6,074    1622     | 2061     | 1364     | 1027    
+grok-3-preview-02-24                               Proprietary  6,040    919      | 1469     | 1909     | 1743    
+grok-3-mini-beta                                   Proprietary  5,991    522      | 1616     | 1938     | 1915    
+llama-4-maverick-03-26-experimental                Open-Source  5,806    0        | 1652     | 2250     | 1904    
+claude-sonnet-4-20250514-thinking-32k              Proprietary  5,613    0        | 0        | 3637     | 1976    
+qwen3-30b-a3b                                      Open-Source  5,498    43       | 1598     | 2077     | 1780    
+minimax-m1                                         Proprietary  5,469    0        | 0        | 2409     | 3060    
+llama-4-maverick-17b-128e-instruct                 Open-Source  5,332    700      | 1585     | 1195     | 1852    
+gemini-2.5-flash-lite-preview-06-17-thinking       Proprietary  5,232    0        | 0        | 3413     | 1819    
+qwen3-235b-a22b                                    Open-Source  5,115    39       | 1477     | 1934     | 1665    
+gemini-2.5-flash-preview-04-17                     Proprietary  5,050    626      | 1943     | 1412     | 1069    
+llama-3.3-70b-instruct                             Open-Source  4,905    826      | 1632     | 1377     | 1070    
+qwen-max-2025-01-25                                Open-Weight  4,379    591      | 1564     | 1311     | 913     
+qwq-32b                                            Open-Weight  4,259    613      | 1494     | 1212     | 940     
+mistral-small-3.1-24b-instruct-2503                Open-Source  3,271    0        | 0        | 1319     | 1952    
+amazon-nova-experimental-chat-05-14                Proprietary  3,267    0        | 0        | 1410     | 1857    
+gemini-2.5-pro-preview-05-06                       Proprietary  3,255    0        | 1365     | 1889     | 1       
+llama-4-scout-17b-16e-instruct                     Open-Source  2,805    0        | 0        | 873      | 1932    
+grok-3-mini-high                                   Proprietary  2,801    0        | 0        | 0        | 2801    
+kimi-k2-0711-preview                               Proprietary  2,743    0        | 0        | 0        | 2743    
+gemma-3n-e4b-it                                    Open-Source  2,611    0        | 0        | 893      | 1718    
+magistral-medium-2506                              Open-Source  2,606    0        | 0        | 1378     | 1228    
+mistral-small-2506                                 Open-Source  2,373    0        | 0        | 0        | 2373    
+hunyuan-turbos-20250416                            Proprietary  1,585    0        | 0        | 956      | 629     
+grok-4-0709                                        Proprietary  1,561    0        | 0        | 0        | 1561    
+gemini-2.5-pro-preview-03-25                       Proprietary  1,389    999      | 389      | 1        | 0       
+qwen3-235b-a22b-instruct-2507                      Open-Source  622      0        | 0        | 0        | 622     
+gpt-4o-mini-2024-07-18                             Proprietary  590      590      | 0        | 0        | 0       
+gpt-4o-2024-11-20                                  Proprietary  573      573      | 0        | 0        | 0       
+gemini-2.0-flash-thinking-exp-01-21                Proprietary  366      366      | 0        | 0        | 0       
+qwen3-coder-480b-a35b-instruct                     Open-Source  2        0        | 0        | 0        | 2       
+
+================================================================================
+MONTHLY BATTLE TRENDS BY CATEGORY
+================================================================================
+
+CATEGORY BATTLE COUNTS BY MONTH:
+Category        Total      2025-04    | 2025-05    | 2025-06    | 2025-07   
+-----------------------------------------------------------------------------
+Proprietary     183,476    13,534     | 38,637     | 71,769     | 59,536    
+Open-Source     79,154     2,634      | 14,371     | 32,602     | 29,547    
+Open-Weight     8,638      1,204      | 3,058      | 2,523      | 1,853     
+
+CATEGORY PERCENTAGES BY MONTH:
+Category        Avg %    2025-04    | 2025-05    | 2025-06    | 2025-07   
+---------------------------------------------------------------------------
+Proprietary     139.7   % 155.8     % | 137.8     % | 134.3     % | 130.9     %
+Open-Source     51.9    % 30.3      % | 51.3      % | 61.0      % | 65.0      %
+Open-Weight     8.4     % 13.9      % | 10.9      % | 4.7       % | 4.1       %
+
+================================================================================
+CATEGORY GROWTH ANALYSIS
+================================================================================
+
+MONTH-OVER-MONTH GROWTH RATES:
+
+Proprietary Growth:
+  2025-04: 13,534 battles (baseline)
+  2025-05: 38,637 battles (+185.5%) 📈
+  2025-06: 71,769 battles (+85.8%) 📈
+  2025-07: 59,536 battles (-17.0%) 📉
+
+Open-Source Growth:
+  2025-04: 2,634 battles (baseline)
+  2025-05: 14,371 battles (+445.6%) 📈
+  2025-06: 32,602 battles (+126.9%) 📈
+  2025-07: 29,547 battles (-9.4%) 📉
+
+Open-Weight Growth:
+  2025-04: 1,204 battles (baseline)
+  2025-05: 3,058 battles (+154.0%) 📈
+  2025-06: 2,523 battles (-17.5%) 📉
+  2025-07: 1,853 battles (-26.6%) 📉
+
+SUMMARY STATISTICS:
+
+Proprietary:
+  Total battles: 183,476
+  Average per month: 45869
+  Peak month: 2025-06 (71,769 battles)
+  Lowest month: 2025-04 (13,534 battles)
+  Overall trend: Growing (+339.9%)
+
+Open-Source:
+  Total battles: 79,154
+  Average per month: 19788
+  Peak month: 2025-06 (32,602 battles)
+  Lowest month: 2025-04 (2,634 battles)
+  Overall trend: Growing (+1021.8%)
+
+Open-Weight:
+  Total battles: 8,638
+  Average per month: 2160
+  Peak month: 2025-05 (3,058 battles)
+  Lowest month: 2025-04 (1,204 battles)
+  Overall trend: Growing (+53.9%)
+
+✅ Monthly battle trends analysis complete!
+Output saved to: monthly_battle_trends_analysis.txt

@@ -1,0 +1,91 @@
+================================================================================
+HEAD-TO-HEAD PERFORMANCE AND TEMPORAL CLUSTERING ANALYSIS
+================================================================================
+
+HEAD-TO-HEAD PERFORMANCE ANALYSIS BY MONTH
+============================================================
+
+Months analyzed: 2025-04, 2025-05, 2025-06, 2025-07
+
+OPEN-SOURCE vs PROPRIETARY PERFORMANCE
+==================================================
+Month      Battles  Open-Source Wins Win Rate   Trend     
+------------------------------------------------------------
+2025-04    1574     615             39.1      % 🆕
+2025-05    7441     3668            49.3      % 📈
+2025-06    16411    8417            51.3      % ➡️
+2025-07    14400    6713            46.6      % 📉
+
+OPEN-SOURCE vs OPEN-WEIGHT PERFORMANCE
+==================================================
+Month      Battles  Open-Source Wins Win Rate   Trend     
+------------------------------------------------------------
+2025-04    144      58              40.3      % 🆕
+2025-05    591      277             46.9      % 📈
+2025-06    548      287             52.4      % 📈
+2025-07    369      184             49.9      % 📉
+
+OPEN-WEIGHT vs PROPRIETARY PERFORMANCE
+==================================================
+Month      Battles  Open-Weight Wins Win Rate   Trend     
+------------------------------------------------------------
+2025-04    715      346             48.4      % 🆕
+2025-05    1503     761             50.6      % 📈
+2025-06    1233     627             50.9      % ➡️
+2025-07    916      411             44.9      % 📉
+
+OVERALL HEAD-TO-HEAD SUMMARY
+========================================
+
+Open-Source vs Proprietary:
+  Total battles: 39,826
+  Open-Source wins: 19,413 (48.7%)
+  Proprietary wins: 20,413 (51.3%)
+  Result: ⚖️ Competitive balance
+
+Open-Source vs Open-Weight:
+  Total battles: 1,652
+  Open-Source wins: 806 (48.8%)
+  Open-Weight wins: 846 (51.2%)
+  Result: ⚖️ Competitive balance
+
+Open-Weight vs Proprietary:
+  Total battles: 4,367
+  Open-Weight wins: 2,145 (49.1%)
+  Proprietary wins: 2,222 (50.9%)
+  Result: ⚖️ Competitive balance
+
+
+================================================================================
+TEMPORAL CLUSTERING ANALYSIS
+================================================================================
+
+BATTLE MATRIX BY RELEASE COHORT:
+Cohort      Pre-2025  2025-01   2025-02   2025-03   2025-04   2025-05   2025-06   2025-07   
+--------------------------------------------------------------------------------------------
+Pre-2025    1073      1195      2861      4303      5919      5586      3279      445       
+2025-01     1195      136       1245      1887      2640      2530      1402      198       
+2025-02     2861      1245      1010      4316      6113      5800      3331      429       
+2025-03     4303      1887      4316      2924      9941      9722      5871      768       
+2025-04     5919      2640      6113      9941      6416      14736     8803      1144      
+2025-05     5586      2530      5800      9722      14736     6429      8971      957       
+2025-06     3279      1402      3331      5871      8803      8971      2378      765       
+2025-07     445       198       429       768       1144      957       765       111       
+
+TEMPORAL DISTANCE ANALYSIS:
+Distance   Battles    Percentage   Description                   
+------------------------------------------------------------------------
+0          20,477     8.2         % Same cohort (diagonal)        
+1          82,338     32.8        % Adjacent cohorts              
+2          60,686     24.2        % Close cohorts                 
+3          39,516     15.8        % Distant cohorts               
+4          25,096     10.0        % Distant cohorts               
+5          14,834     5.9         % Distant cohorts               
+6          6,954      2.8         % Distant cohorts               
+7          890        0.4         % Distant cohorts               
+
+CLUSTERING ASSESSMENT:
+Same cohort battles: 20,477 (8.2%)
+🟢 MINIMAL temporal clustering - matchmaking appears unbiased.
+
+✅ Head-to-head and temporal clustering analysis complete!

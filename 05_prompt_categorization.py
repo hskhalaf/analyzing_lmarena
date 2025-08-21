@@ -346,21 +346,24 @@ class PromptCategorizer:
         # Use chat template format for Llama models
         if hasattr(self.tokenizer, 'apply_chat_template'):
             messages = [
-                {"role": "system", "content": f"You are an expert at categorizing text prompts. Available categories:\n{categories_text}\n\nRespond with ONLY the category names (comma-separated) that apply to the prompt. If none fit well, respond with 'other'. Do not include explanations or additional text."},
-                {"role": "user", "content": f"Please categorize this prompt: {prompt_text}"}
+                {"role": "system", "content": f"You are an expert at categorizing text prompts. Your task is to assign the most relevant categories from this list:\n\n{categories_text}\n\nIMPORTANT: Respond with ONLY the category names separated by commas. Do not add explanations, reasoning, or any other text. If the prompt doesn't fit any category well, respond with 'other'.\n\nExample responses:\n- mathematical_reasoning, problem_solving\n- creative_writing\n- other"},
+                {"role": "user", "content": f"Categorize this prompt: {prompt_text}"}
             ]
             categorization_prompt = self.tokenizer.apply_chat_template(messages, tokenize=False)
         else:
             # Fallback to regular prompt format
-            categorization_prompt = f"""Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+            categorization_prompt = f"""You are an expert at categorizing text prompts. Available categories:
 
-Available categories:
 {categories_text}
 
-Prompt to categorize:
-"{prompt_text}"
+IMPORTANT: Respond with ONLY the category names separated by commas. Do not add explanations or reasoning.
 
-Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
+Example responses:
+- mathematical_reasoning, problem_solving
+- creative_writing
+- other
+
+Prompt to categorize: "{prompt_text}"
 
 Categories:"""
         
@@ -393,11 +396,13 @@ Categories:"""
                 outputs = self.model.generate(
                     inputs["input_ids"],
                     max_new_tokens=128,
-                    temperature=0.7,
+                    temperature=0.3,  # Lower temperature for more focused responses
                     do_sample=True,
+                    top_p=0.9,  # Add nucleus sampling for better quality
                     pad_token_id=self.tokenizer.eos_token_id,
                     eos_token_id=self.tokenizer.eos_token_id,
-                    use_cache=True
+                    use_cache=True,
+                    repetition_penalty=1.1  # Prevent repetitive outputs
                 )
             
             # Decode response
@@ -423,6 +428,15 @@ Categories:"""
         # Clean response and extract categories
         response_clean = response_text.strip().lower()
         
+        # Check if response looks like a valid category list
+        if not any(separator in response_clean for separator in [',', ';', '\n', 'and', '&']):
+            # If no separators, check if it's a single valid category
+            if response_clean in [cat.lower() for cat in self.prompt_categories.keys()]:
+                return [response_clean]
+            else:
+                # Invalid response, return empty
+                return []
+        
         # Split by common separators
         categories = []
         for separator in [',', ';', '\n', 'and', '&']:
@@ -431,17 +445,19 @@ Categories:"""
                 categories = [part.strip() for part in parts if part.strip()]
                 break
         
-        # If no separators found, treat as single category
-        if not categories:
-            categories = [response_clean]
-        
-        # Filter to only include valid categories
+        # Filter to only include valid categories from our predefined list
         valid_categories = []
+        valid_category_keys = [cat.lower() for cat in self.prompt_categories.keys()]
+        
         for cat in categories:
-            # Remove common prefixes/suffixes
+            # Clean the category name
             cat_clean = cat.replace('category:', '').replace('categories:', '').strip()
-            if cat_clean and cat_clean != 'other':
+            
+            # Check if it's a valid predefined category
+            if cat_clean in valid_category_keys:
                 valid_categories.append(cat_clean)
+            elif cat_clean == 'other':
+                valid_categories.append('other')
         
         return valid_categories[:5]  # Limit to 5 categories max
     

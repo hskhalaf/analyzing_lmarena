@@ -395,6 +395,7 @@ Categories:"""
             with torch.no_grad():
                 outputs = self.model.generate(
                     inputs["input_ids"],
+                    attention_mask=inputs["attention_mask"],  # Explicitly pass attention mask
                     max_new_tokens=128,
                     temperature=0.3,  # Lower temperature for more focused responses
                     do_sample=True,
@@ -408,11 +409,23 @@ Categories:"""
             # Decode response
             response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
             
-            # Extract the generated part (remove input prompt)
-            generated_text = response[len(full_prompt):].strip()
+            # Debug: Print full response for troubleshooting
+            print(f"    Full response: '{response}'")
+            print(f"    Input prompt length: {len(full_prompt)}")
             
-            # Debug: Print the response for troubleshooting
-            print(f"    Raw response: '{generated_text}'")
+            # Extract the generated part - better handling for Llama
+            if response.startswith(full_prompt):
+                generated_text = response[len(full_prompt):].strip()
+            else:
+                # Fallback: look for the last user message and extract after it
+                user_msg = f"Categorize this prompt: {prompt_text}"
+                if user_msg in response:
+                    generated_text = response.split(user_msg)[-1].strip()
+                else:
+                    generated_text = response.strip()
+            
+            # Debug: Print the extracted generated part
+            print(f"    Generated text: '{generated_text}'")
             
             # Parse categories from response
             categories = self.parse_categorization_response(generated_text)

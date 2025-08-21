@@ -409,10 +409,6 @@ Categories:"""
             # Decode response
             response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
             
-            # Debug: Print full response for troubleshooting
-            print(f"    Full response: '{response}'")
-            print(f"    Input prompt length: {len(full_prompt)}")
-            
             # Extract the generated part - better handling for Llama
             if response.startswith(full_prompt):
                 generated_text = response[len(full_prompt):].strip()
@@ -424,14 +420,8 @@ Categories:"""
                 else:
                     generated_text = response.strip()
             
-            # Debug: Print the extracted generated part
-            print(f"    Generated text: '{generated_text}'")
-            
             # Parse categories from response
             categories = self.parse_categorization_response(generated_text)
-            
-            # Debug: Print parsed categories
-            print(f"    Parsed categories: {categories}")
             
             return categories
             
@@ -507,18 +497,12 @@ Categories:"""
             batch_num = (batch_start // batch_size) + 1
             total_batches = (total_prompts + batch_size - 1) // batch_size
             
-            print(f"\n{'='*60}")
-            print(f"PROCESSING BATCH {batch_num}/{total_batches}")
-            print(f"Prompts {batch_start+1:,} - {batch_end:,} of {total_prompts:,}")
-            print(f"{'='*60}")
+            print(f"Batch {batch_num}/{total_batches}: Prompts {batch_start+1:,}-{batch_end:,}")
             
             batch_categorized = []
             batch_successful = 0
             
             for i, prompt_text in enumerate(batch_prompts):
-                if i % 20 == 0:  # Progress update every 20 prompts
-                    print(f"  Processing prompt {i+1}/{len(batch_prompts)} in batch...")
-                
                 # Run CUDA categorization
                 categories = self.categorize_prompt_with_cuda(prompt_text)
                 
@@ -554,30 +538,23 @@ Categories:"""
                 'total': len(batch_prompts)
             })
             
-            print(f"✅ BATCH {batch_num} COMPLETE:")
-            print(f"  Successful: {batch_successful}/{len(batch_prompts)}")
-            print(f"  Failed: {len(batch_prompts) - batch_successful}/{len(batch_prompts)}")
+            print(f"  ✅ {batch_successful}/{len(batch_prompts)} successful")
             
             # Save intermediate results every 5 batches
             if batch_num % 5 == 0:
                 self.save_intermediate_results(all_categorized_prompts, batch_results, batch_num)
         
         # Final results
-        print(f"\n🎉 ALL PROMPTS PROCESSED!")
-        print(f"📊 FINAL RESULTS:")
-        print(f"  Total prompts: {total_prompts:,}")
-        print(f"  Successful categorizations: {successful_categorizations:,}")
-        print(f"  Failed categorizations: {failed_categorizations:,}")
-        print(f"  Success rate: {(successful_categorizations/total_prompts)*100:.1f}%")
-        print(f"  Categories discovered: {len(self.category_distribution)}")
+        print(f"\n🎉 COMPLETE! {successful_categorizations:,}/{total_prompts:,} prompts categorized")
+        print(f"📊 Success rate: {(successful_categorizations/total_prompts)*100:.1f}%")
         
         # Show top categories
         if self.category_distribution:
-            print(f"\n🏆 TOP CATEGORIES DISCOVERED:")
-            top_categories = sorted(self.category_distribution.items(), key=lambda x: x[1], reverse=True)[:15]
+            print(f"🏆 Top categories:")
+            top_categories = sorted(self.category_distribution.items(), key=lambda x: x[1], reverse=True)[:10]
             for cat, count in top_categories:
                 percentage = (count / successful_categorizations) * 100
-                print(f"  {cat}: {count:,} prompts ({percentage:.1f}%)")
+                print(f"  {cat}: {count:,} ({percentage:.1f}%)")
         
         # Save final results
         self.save_comprehensive_results(all_categorized_prompts, batch_results)
@@ -599,7 +576,7 @@ Categories:"""
         with open(progress_file, 'w', encoding='utf-8') as f:
             json.dump(batch_results, f, indent=2)
         
-        print(f"💾 Intermediate results saved for batch {current_batch}")
+        print(f"💾 Saved batch {current_batch}")
     
     def save_comprehensive_results(self, categorized_prompts, batch_results):
         """Save comprehensive results from all prompts."""
@@ -635,11 +612,7 @@ Categories:"""
         with open(stats_file, 'w', encoding='utf-8') as f:
             json.dump(stats_data, f, indent=2)
         
-        print(f"\n💾 COMPREHENSIVE RESULTS SAVED:")
-        print(f"  - cuda_categorization_all_prompts.json: {len(categorized_prompts):,} categorized prompts")
-        print(f"  - batch_processing_summary.json: {len(batch_results)} batch summaries")
-        print(f"  - comprehensive_category_distribution.json: Complete category distribution")
-        print(f"  - comprehensive_processing_stats.json: Processing statistics")
+        print(f"💾 Results saved to prompt_analysis/")
     
     def save_prompts_for_analysis(self):
         """Save extracted prompts and analysis for external categorization."""

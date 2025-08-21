@@ -104,6 +104,10 @@ class PromptCategorizer:
                 print("Setting padding token for tokenizer...")
                 self.tokenizer.pad_token = self.tokenizer.eos_token
             
+            # Ensure padding side is set correctly for decoder-only models
+            print("Setting padding side to 'left' for decoder-only model...")
+            self.tokenizer.padding_side = 'left'
+            
             print(f"Loading model: {model_name}")
             
             # Use safer loading approach with safetensors and no device_map
@@ -145,6 +149,9 @@ class PromptCategorizer:
                 # Fix tokenizer padding token issue in fallback too
                 if self.tokenizer.pad_token is None:
                     self.tokenizer.pad_token = self.tokenizer.eos_token
+                
+                # Ensure padding side is set correctly for decoder-only models
+                self.tokenizer.padding_side = 'left'
                 
                 if self.device.type == "cuda":
                     self.model = self.model.to(self.device)

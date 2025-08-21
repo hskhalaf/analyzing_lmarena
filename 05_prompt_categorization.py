@@ -97,7 +97,7 @@ class PromptCategorizer:
         """Load Llama 3.2-3B-Instruct model for prompt categorization using CUDA."""
         try:
             print(f"Loading tokenizer: {model_name}")
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side='left')
             
             # Fix tokenizer padding token issue
             if self.tokenizer.pad_token is None:
@@ -132,6 +132,8 @@ class PromptCategorizer:
             # Fallback: try loading without specific dtype
             try:
                 print(f"Loading model with fallback method...")
+                # Also reload tokenizer with correct padding_side in fallback
+                self.tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side='left')
                 self.model = AutoModelForCausalLM.from_pretrained(
                     model_name,
                     use_safetensors=True,

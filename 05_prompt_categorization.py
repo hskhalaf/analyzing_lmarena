@@ -444,13 +444,14 @@ Categories:"""
                 full_prompt = self.create_categorization_prompt(prompt_text)
                 all_prompts.append(full_prompt)
             
-            # Tokenize all prompts together
+            # Tokenize all prompts together - explicit padding strategy for decoder-only models
             inputs = self.tokenizer(
                 all_prompts, 
                 return_tensors="pt", 
                 truncation=True, 
                 max_length=max_length,
-                padding=True  # Enable padding for batch processing
+                padding='longest',  # Use longest padding strategy instead of True
+                return_attention_mask=True  # Explicitly request attention mask
             )
             
             # Move to device

@@ -108,6 +108,12 @@ class PromptCategorizer:
             print("Setting padding side to 'left' for decoder-only model...")
             self.tokenizer.padding_side = 'left'
             
+            # Force additional tokenizer configuration for decoder-only models
+            print("Forcing additional tokenizer configuration...")
+            self.tokenizer.pad_token = self.tokenizer.eos_token
+            self.tokenizer.pad_token_id = self.tokenizer.eos_token_id
+            self.tokenizer.padding_side = 'left'
+            
             print(f"Loading model: {model_name}")
             
             # Use safer loading approach with safetensors and no device_map
@@ -151,6 +157,11 @@ class PromptCategorizer:
                     self.tokenizer.pad_token = self.tokenizer.eos_token
                 
                 # Ensure padding side is set correctly for decoder-only models
+                self.tokenizer.padding_side = 'left'
+                
+                # Force additional tokenizer configuration for decoder-only models
+                self.tokenizer.pad_token = self.tokenizer.eos_token
+                self.tokenizer.pad_token_id = self.tokenizer.eos_token_id
                 self.tokenizer.padding_side = 'left'
                 
                 if self.device.type == "cuda":
@@ -355,24 +366,35 @@ class PromptCategorizer:
         # Use chat template format for Llama models
         if hasattr(self.tokenizer, 'apply_chat_template'):
             messages = [
-                {"role": "system", "content": f"You are an expert at categorizing text prompts. Your task is to assign the most relevant categories from this list:\n\n{categories_text}\n\nIMPORTANT: Respond with ONLY the category names separated by commas. Do not add explanations, reasoning, or any other text. If the prompt doesn't fit any category well, respond with 'other'.\n\nExample responses:\n- mathematical_reasoning, problem_solving\n- creative_writing\n- other"},
-                {"role": "user", "content": f"Categorize this prompt: {prompt_text}"}
+                {"role": "system", "content": f"You are a text categorization expert. Choose 1-3 most relevant categories from:\n\n{categories_text}\n\nRules:\n1. Respond with ONLY category names separated by commas\n2. No explanations or extra text\n3. Use 'other' if none fit well\n4. Be flexible with category matching\n\nExamples:\nPrompt: 'Solve this equation: 2x + 5 = 13'\nResponse: mathematical_reasoning, problem_solving\n\nPrompt: 'Write a story about a magical forest'\nResponse: creative_writing\n\nPrompt: 'What is the capital of France?'\nResponse: factual_qa\n\nPrompt: 'Explain how photosynthesis works'\nResponse: scientific_explanation\n\nPrompt: 'Random gibberish text'\nResponse: other"},
+                {"role": "user", "content": f"Categorize: {prompt_text}"}
             ]
             categorization_prompt = self.tokenizer.apply_chat_template(messages, tokenize=False)
         else:
             # Fallback to regular prompt format
-            categorization_prompt = f"""You are an expert at categorizing text prompts. Available categories:
+            categorization_prompt = f"""Categorize this text into 1-3 most relevant categories:
 
 {categories_text}
 
-IMPORTANT: Respond with ONLY the category names separated by commas. Do not add explanations or reasoning.
+Rules: Only category names separated by commas. No explanations.
 
-Example responses:
-- mathematical_reasoning, problem_solving
-- creative_writing
-- other
+Examples:
+Prompt: 'Solve this equation: 2x + 5 = 13'
+Response: mathematical_reasoning, problem_solving
 
-Prompt to categorize: "{prompt_text}"
+Prompt: 'Write a story about a magical forest'
+Response: creative_writing
+
+Prompt: 'What is the capital of France?'
+Response: factual_qa
+
+Prompt: 'Explain how photosynthesis works'
+Response: scientific_explanation
+
+Prompt: 'Random gibberish text'
+Response: other
+
+Text: "{prompt_text}"
 
 Categories:"""
         
@@ -511,7 +533,11 @@ Categories:"""
             if response_clean in [cat.lower() for cat in self.prompt_categories.keys()]:
                 return [response_clean]
             else:
-                # Invalid response, return empty
+                # Try partial matching for single word responses
+                for cat in self.prompt_categories.keys():
+                    if cat.lower() in response_clean or response_clean in cat.lower():
+                        return [cat.lower()]
+                # Still no match, return empty
                 return []
         
         # Split by common separators
@@ -535,6 +561,14 @@ Categories:"""
                 valid_categories.append(cat_clean)
             elif cat_clean == 'other':
                 valid_categories.append('other')
+            else:
+                # Try partial matching for similar categories
+                for valid_cat in valid_category_keys:
+                    if (cat_clean in valid_cat or valid_cat in cat_clean or 
+                        any(word in valid_cat for word in cat_clean.split()) or
+                        any(word in cat_clean for word in valid_cat.split())):
+                        valid_categories.append(valid_cat)
+                        break
         
         return valid_categories[:5]  # Limit to 5 categories max
     

@@ -411,8 +411,14 @@ Categories:"""
             # Extract the generated part (remove input prompt)
             generated_text = response[len(full_prompt):].strip()
             
+            # Debug: Print the response for troubleshooting
+            print(f"    Raw response: '{generated_text}'")
+            
             # Parse categories from response
             categories = self.parse_categorization_response(generated_text)
+            
+            # Debug: Print parsed categories
+            print(f"    Parsed categories: {categories}")
             
             return categories
             
@@ -544,7 +550,7 @@ Categories:"""
             
             # Run CUDA categorization on sample prompts
             print(f"\n🤖 RUNNING CUDA CATEGORIZATION ON SAMPLE PROMPTS")
-            self.run_cuda_categorization()
+            self.run_cuda_categorization(sample_size=10)  # Start with 10 samples for debugging
         else:
             print("⚠️  Model loading failed, continuing with external analysis only")
         

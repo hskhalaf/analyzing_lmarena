@@ -100,21 +100,48 @@ class PromptCategorizer:
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
             
             print(f"Loading model: {model_name}")
+            
+            # Use safer loading approach with safetensors and no device_map
             self.model = AutoModelForCausalLM.from_pretrained(
                 model_name,
                 torch_dtype=torch.float16 if self.device.type == "cuda" else torch.float32,
-                device_map=self.device if self.device.type == "cuda" else None
+                use_safetensors=True,  # Force use of safetensors format
+                device_map=None,  # Don't use device_map to avoid accelerate dependency
+                low_cpu_mem_usage=True  # Reduce memory usage during loading
             )
             
+            # Manually move model to device
             if self.device.type == "cuda":
+                print(f"Moving model to CUDA device...")
                 self.model = self.model.to(self.device)
+                print(f"Model successfully moved to {self.device}")
             
             print(f"✅ Model loaded successfully on {self.device}!")
             return True
             
         except Exception as e:
             print(f"❌ Error loading model: {e}")
-            return False
+            print(f"Trying alternative loading method...")
+            
+            # Fallback: try loading without specific dtype
+            try:
+                print(f"Loading model with fallback method...")
+                self.model = AutoModelForCausalLM.from_pretrained(
+                    model_name,
+                    use_safetensors=True,
+                    device_map=None,
+                    low_cpu_mem_usage=True
+                )
+                
+                if self.device.type == "cuda":
+                    self.model = self.model.to(self.device)
+                
+                print(f"✅ Model loaded successfully with fallback method on {self.device}!")
+                return True
+                
+            except Exception as e2:
+                print(f"❌ Fallback loading also failed: {e2}")
+                return False
     
     def extract_prompts_from_dataset(self):
         """Extract all prompts from the Arena dataset."""

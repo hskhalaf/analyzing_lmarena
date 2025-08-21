@@ -343,7 +343,16 @@ class PromptCategorizer:
         """Create a prompt for the generative model to categorize the text."""
         categories_text = "\n".join([f"- {cat}: {desc}" for cat, desc in self.prompt_categories.items()])
         
-        categorization_prompt = f"""Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
+        # Use chat template format for Llama models
+        if hasattr(self.tokenizer, 'apply_chat_template'):
+            messages = [
+                {"role": "system", "content": f"You are an expert at categorizing text prompts. Available categories:\n{categories_text}\n\nRespond with ONLY the category names (comma-separated) that apply to the prompt. If none fit well, respond with 'other'. Do not include explanations or additional text."},
+                {"role": "user", "content": f"Please categorize this prompt: {prompt_text}"}
+            ]
+            categorization_prompt = self.tokenizer.apply_chat_template(messages, tokenize=False)
+        else:
+            # Fallback to regular prompt format
+            categorization_prompt = f"""Please categorize the following prompt into the most relevant categories from the list below. A prompt can belong to multiple categories.
 
 Available categories:
 {categories_text}
@@ -354,7 +363,7 @@ Prompt to categorize:
 Please respond with ONLY the category names (comma-separated) that apply to this prompt. If none fit well, respond with "other". Do not include explanations or additional text.
 
 Categories:"""
-
+        
         return categorization_prompt
     
     def categorize_prompt_with_cuda(self, prompt_text, max_length=512):
@@ -367,26 +376,28 @@ Categories:"""
             # Create categorization prompt
             full_prompt = self.create_categorization_prompt(prompt_text)
             
-            # Tokenize input
+            # Tokenize input - optimized for Llama chat template
             inputs = self.tokenizer(
                 full_prompt, 
                 return_tensors="pt", 
                 truncation=True, 
                 max_length=max_length,
-                padding=True
+                padding=False  # No padding needed with chat template
             )
             
             # Move to device
             inputs = {k: v.to(self.device) for k, v in inputs.items()}
             
-            # Generate response with CUDA - simplified
+            # Generate response with CUDA - optimized for Llama
             with torch.no_grad():
                 outputs = self.model.generate(
                     inputs["input_ids"],
                     max_new_tokens=128,
                     temperature=0.7,
                     do_sample=True,
-                    pad_token_id=self.tokenizer.eos_token_id
+                    pad_token_id=self.tokenizer.eos_token_id,
+                    eos_token_id=self.tokenizer.eos_token_id,
+                    use_cache=True
                 )
             
             # Decode response

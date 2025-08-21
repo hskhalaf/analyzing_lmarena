@@ -480,6 +480,167 @@ Categories:"""
         
         return valid_categories[:5]  # Limit to 5 categories max
     
+    def run_cuda_categorization_on_all_prompts(self, batch_size=100, max_prompts=None):
+        """Run CUDA-accelerated categorization on all prompts with efficient batching."""
+        if not self.all_prompts:
+            print("❌ No prompts available for categorization")
+            return
+        
+        total_prompts = len(self.all_prompts)
+        if max_prompts:
+            total_prompts = min(total_prompts, max_prompts)
+        
+        print(f"🚀 PROCESSING ALL {total_prompts:,} PROMPTS WITH CUDA")
+        print(f"📦 Batch size: {batch_size}")
+        print(f"🔄 Total batches: {(total_prompts + batch_size - 1) // batch_size}")
+        
+        # Initialize tracking
+        all_categorized_prompts = []
+        successful_categorizations = 0
+        failed_categorizations = 0
+        batch_results = []
+        
+        # Process in batches
+        for batch_start in range(0, total_prompts, batch_size):
+            batch_end = min(batch_start + batch_size, total_prompts)
+            batch_prompts = self.all_prompts[batch_start:batch_end]
+            batch_num = (batch_start // batch_size) + 1
+            total_batches = (total_prompts + batch_size - 1) // batch_size
+            
+            print(f"\n{'='*60}")
+            print(f"PROCESSING BATCH {batch_num}/{total_batches}")
+            print(f"Prompts {batch_start+1:,} - {batch_end:,} of {total_prompts:,}")
+            print(f"{'='*60}")
+            
+            batch_categorized = []
+            batch_successful = 0
+            
+            for i, prompt_text in enumerate(batch_prompts):
+                if i % 20 == 0:  # Progress update every 20 prompts
+                    print(f"  Processing prompt {i+1}/{len(batch_prompts)} in batch...")
+                
+                # Run CUDA categorization
+                categories = self.categorize_prompt_with_cuda(prompt_text)
+                
+                if categories:
+                    batch_successful += 1
+                    successful_categorizations += 1
+                    
+                    categorized_prompt = {
+                        'prompt': prompt_text[:200] + "..." if len(prompt_text) > 200 else prompt_text,
+                        'full_prompt': prompt_text,
+                        'categories': categories,
+                        'word_count': len(prompt_text.split()),
+                        'char_count': len(prompt_text),
+                        'batch': batch_num
+                    }
+                    
+                    batch_categorized.append(categorized_prompt)
+                    all_categorized_prompts.append(categorized_prompt)
+                    
+                    # Update category distribution
+                    for cat in categories:
+                        self.category_distribution[cat] += 1
+                else:
+                    failed_categorizations += 1
+            
+            # Save batch results
+            batch_results.append({
+                'batch_num': batch_num,
+                'start_idx': batch_start,
+                'end_idx': batch_end,
+                'successful': batch_successful,
+                'failed': len(batch_prompts) - batch_successful,
+                'total': len(batch_prompts)
+            })
+            
+            print(f"✅ BATCH {batch_num} COMPLETE:")
+            print(f"  Successful: {batch_successful}/{len(batch_prompts)}")
+            print(f"  Failed: {len(batch_prompts) - batch_successful}/{len(batch_prompts)}")
+            
+            # Save intermediate results every 5 batches
+            if batch_num % 5 == 0:
+                self.save_intermediate_results(all_categorized_prompts, batch_results, batch_num)
+        
+        # Final results
+        print(f"\n🎉 ALL PROMPTS PROCESSED!")
+        print(f"📊 FINAL RESULTS:")
+        print(f"  Total prompts: {total_prompts:,}")
+        print(f"  Successful categorizations: {successful_categorizations:,}")
+        print(f"  Failed categorizations: {failed_categorizations:,}")
+        print(f"  Success rate: {(successful_categorizations/total_prompts)*100:.1f}%")
+        print(f"  Categories discovered: {len(self.category_distribution)}")
+        
+        # Show top categories
+        if self.category_distribution:
+            print(f"\n🏆 TOP CATEGORIES DISCOVERED:")
+            top_categories = sorted(self.category_distribution.items(), key=lambda x: x[1], reverse=True)[:15]
+            for cat, count in top_categories:
+                percentage = (count / successful_categorizations) * 100
+                print(f"  {cat}: {count:,} prompts ({percentage:.1f}%)")
+        
+        # Save final results
+        self.save_comprehensive_results(all_categorized_prompts, batch_results)
+        
+        return all_categorized_prompts
+    
+    def save_intermediate_results(self, categorized_prompts, batch_results, current_batch):
+        """Save intermediate results during processing."""
+        output_dir = Path("prompt_analysis")
+        output_dir.mkdir(exist_ok=True)
+        
+        # Save intermediate categorized prompts
+        intermediate_file = output_dir / f"cuda_categorization_intermediate_batch_{current_batch}.json"
+        with open(intermediate_file, 'w', encoding='utf-8') as f:
+            json.dump(categorized_prompts, f, indent=2)
+        
+        # Save batch progress
+        progress_file = output_dir / f"batch_progress_batch_{current_batch}.json"
+        with open(progress_file, 'w', encoding='utf-8') as f:
+            json.dump(batch_results, f, indent=2)
+        
+        print(f"💾 Intermediate results saved for batch {current_batch}")
+    
+    def save_comprehensive_results(self, categorized_prompts, batch_results):
+        """Save comprehensive results from all prompts."""
+        output_dir = Path("prompt_analysis")
+        output_dir.mkdir(exist_ok=True)
+        
+        # Save all categorized prompts
+        all_results_file = output_dir / "cuda_categorization_all_prompts.json"
+        with open(all_results_file, 'w', encoding='utf-8') as f:
+            json.dump(categorized_prompts, f, indent=2)
+        
+        # Save batch summary
+        batch_summary_file = output_dir / "batch_processing_summary.json"
+        with open(batch_summary_file, 'w', encoding='utf-8') as f:
+            json.dump(batch_results, f, indent=2)
+        
+        # Save comprehensive category distribution
+        comprehensive_dist_file = output_dir / "comprehensive_category_distribution.json"
+        with open(comprehensive_dist_file, 'w', encoding='utf-8') as f:
+            json.dump(dict(self.category_distribution), f, indent=2)
+        
+        # Save processing statistics
+        stats_file = output_dir / "comprehensive_processing_stats.json"
+        stats_data = {
+            'total_prompts_processed': len(categorized_prompts),
+            'total_prompts_available': len(self.all_prompts),
+            'success_rate': len(categorized_prompts) / len(self.all_prompts) if self.all_prompts else 0,
+            'categories_discovered': len(self.category_distribution),
+            'batch_size_used': 100,
+            'total_batches': len(batch_results),
+            'processing_timestamp': datetime.now().isoformat()
+        }
+        with open(stats_file, 'w', encoding='utf-8') as f:
+            json.dump(stats_data, f, indent=2)
+        
+        print(f"\n💾 COMPREHENSIVE RESULTS SAVED:")
+        print(f"  - cuda_categorization_all_prompts.json: {len(categorized_prompts):,} categorized prompts")
+        print(f"  - batch_processing_summary.json: {len(batch_results)} batch summaries")
+        print(f"  - comprehensive_category_distribution.json: Complete category distribution")
+        print(f"  - comprehensive_processing_stats.json: Processing statistics")
+    
     def save_prompts_for_analysis(self):
         """Save extracted prompts and analysis for external categorization."""
         output_dir = Path("prompt_analysis")
@@ -561,9 +722,12 @@ Categories:"""
         if self.load_model_for_categorization():
             print("✅ Model loaded successfully!")
             
-            # Run CUDA categorization on sample prompts
-            print(f"\n🤖 RUNNING CUDA CATEGORIZATION ON SAMPLE PROMPTS")
-            self.run_cuda_categorization(sample_size=10)  # Start with 10 samples for debugging
+            # Run CUDA categorization on all prompts with efficient batching
+            print(f"\n🤖 RUNNING CUDA CATEGORIZATION ON ALL PROMPTS")
+            
+            # You can limit the number of prompts for testing
+            # self.run_cuda_categorization_on_all_prompts(max_prompts=1000)  # Test with 1000 first
+            self.run_cuda_categorization_on_all_prompts()  # Process all 130,596 prompts
         else:
             print("⚠️  Model loading failed, continuing with external analysis only")
         

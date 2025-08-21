@@ -93,8 +93,8 @@ class PromptCategorizer:
         
         return device
     
-    def load_model_for_categorization(self, model_name="microsoft/DialoGPT-medium"):
-        """Load a model for prompt categorization using CUDA."""
+    def load_model_for_categorization(self, model_name="meta-llama/Llama-3.2-3B-Instruct"):
+        """Load Llama 3.2-3B-Instruct model for prompt categorization using CUDA."""
         try:
             print(f"Loading tokenizer: {model_name}")
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -112,7 +112,8 @@ class PromptCategorizer:
                 torch_dtype=torch.float16 if self.device.type == "cuda" else torch.float32,
                 use_safetensors=True,  # Force use of safetensors format
                 device_map=None,  # Don't use device_map to avoid accelerate dependency
-                low_cpu_mem_usage=True  # Reduce memory usage during loading
+                low_cpu_mem_usage=True,  # Reduce memory usage during loading
+                trust_remote_code=True  # Required for Llama models
             )
             
             # Manually move model to device
@@ -121,11 +122,11 @@ class PromptCategorizer:
                 self.model = self.model.to(self.device)
                 print(f"Model successfully moved to {self.device}")
             
-            print(f"✅ Model loaded successfully on {self.device}!")
+            print(f"✅ Llama model loaded successfully on {self.device}!")
             return True
             
         except Exception as e:
-            print(f"❌ Error loading model: {e}")
+            print(f"❌ Error loading Llama model: {e}")
             print(f"Trying alternative loading method...")
             
             # Fallback: try loading without specific dtype
@@ -135,7 +136,8 @@ class PromptCategorizer:
                     model_name,
                     use_safetensors=True,
                     device_map=None,
-                    low_cpu_mem_usage=True
+                    low_cpu_mem_usage=True,
+                    trust_remote_code=True
                 )
                 
                 # Fix tokenizer padding token issue in fallback too
@@ -145,11 +147,14 @@ class PromptCategorizer:
                 if self.device.type == "cuda":
                     self.model = self.model.to(self.device)
                 
-                print(f"✅ Model loaded successfully with fallback method on {self.device}!")
+                print(f"✅ Llama model loaded successfully with fallback method on {self.device}!")
                 return True
                 
             except Exception as e2:
                 print(f"❌ Fallback loading also failed: {e2}")
+                print("⚠️  Llama model requires special access. You may need to:")
+                print("1. Request access from Meta: https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct")
+                print("2. Use a different open model like 'microsoft/DialoGPT-medium'")
                 return False
     
     def extract_prompts_from_dataset(self):
@@ -374,15 +379,14 @@ Categories:"""
             # Move to device
             inputs = {k: v.to(self.device) for k, v in inputs.items()}
             
-            # Generate response with CUDA
+            # Generate response with CUDA - simplified
             with torch.no_grad():
                 outputs = self.model.generate(
-                    inputs.input_ids,
+                    inputs["input_ids"],
                     max_new_tokens=128,
                     temperature=0.7,
                     do_sample=True,
-                    pad_token_id=self.tokenizer.eos_token_id,
-                    attention_mask=inputs.attention_mask
+                    pad_token_id=self.tokenizer.eos_token_id
                 )
             
             # Decode response

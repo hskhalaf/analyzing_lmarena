@@ -99,6 +99,11 @@ class PromptCategorizer:
             print(f"Loading tokenizer: {model_name}")
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
             
+            # Fix tokenizer padding token issue
+            if self.tokenizer.pad_token is None:
+                print("Setting padding token for tokenizer...")
+                self.tokenizer.pad_token = self.tokenizer.eos_token
+            
             print(f"Loading model: {model_name}")
             
             # Use safer loading approach with safetensors and no device_map
@@ -132,6 +137,10 @@ class PromptCategorizer:
                     device_map=None,
                     low_cpu_mem_usage=True
                 )
+                
+                # Fix tokenizer padding token issue in fallback too
+                if self.tokenizer.pad_token is None:
+                    self.tokenizer.pad_token = self.tokenizer.eos_token
                 
                 if self.device.type == "cuda":
                     self.model = self.model.to(self.device)

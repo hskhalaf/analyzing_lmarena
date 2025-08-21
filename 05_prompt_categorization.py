@@ -429,6 +429,64 @@ Categories:"""
             print(f"❌ Error in CUDA categorization: {e}")
             return None
     
+    def categorize_prompt_batch_cuda(self, prompt_texts, max_length=512):
+        """Categorize multiple prompts in a single CUDA batch for efficiency."""
+        if not self.model or not self.tokenizer:
+            print("❌ Model not loaded. Call load_model_for_categorization() first.")
+            return [None] * len(prompt_texts)
+        
+        try:
+            # Create categorization prompts for all texts
+            all_prompts = []
+            for prompt_text in prompt_texts:
+                full_prompt = self.create_categorization_prompt(prompt_text)
+                all_prompts.append(full_prompt)
+            
+            # Tokenize all prompts together
+            inputs = self.tokenizer(
+                all_prompts, 
+                return_tensors="pt", 
+                truncation=True, 
+                max_length=max_length,
+                padding=True  # Enable padding for batch processing
+            )
+            
+            # Move to device
+            inputs = {k: v.to(self.device) for k, v in inputs.items()}
+            
+            # Generate responses for all prompts in one CUDA call
+            with torch.no_grad():
+                outputs = self.model.generate(
+                    inputs["input_ids"],
+                    attention_mask=inputs["attention_mask"],
+                    max_new_tokens=128,
+                    temperature=0.3,
+                    do_sample=True,
+                    top_p=0.9,
+                    pad_token_id=self.tokenizer.eos_token_id,
+                    eos_token_id=self.tokenizer.eos_token_id,
+                    use_cache=True,
+                    repetition_penalty=1.1
+                )
+            
+            # Process all outputs
+            all_categories = []
+            for i, prompt_text in enumerate(prompt_texts):
+                # Extract the generated part for this specific prompt
+                prompt_length = inputs["input_ids"][i].shape[0]
+                generated_tokens = outputs[i][prompt_length:]
+                generated_text = self.tokenizer.decode(generated_tokens, skip_special_tokens=True)
+                
+                # Parse categories from response
+                categories = self.parse_categorization_response(generated_text)
+                all_categories.append(categories)
+            
+            return all_categories
+            
+        except Exception as e:
+            print(f"❌ Error in batch CUDA categorization: {e}")
+            return [None] * len(prompt_texts)
+    
     def parse_categorization_response(self, response_text):
         """Parse the model response to extract category names."""
         if not response_text:
@@ -470,7 +528,7 @@ Categories:"""
         
         return valid_categories[:5]  # Limit to 5 categories max
     
-    def run_cuda_categorization_on_all_prompts(self, batch_size=100, max_prompts=None):
+    def run_cuda_categorization_on_all_prompts(self, batch_size=250, max_prompts=None):
         """Run CUDA-accelerated categorization on all prompts with efficient batching."""
         if not self.all_prompts:
             print("❌ No prompts available for categorization")
@@ -502,10 +560,11 @@ Categories:"""
             batch_categorized = []
             batch_successful = 0
             
-            for i, prompt_text in enumerate(batch_prompts):
-                # Run CUDA categorization
-                categories = self.categorize_prompt_with_cuda(prompt_text)
-                
+            # Process prompts in true batches for efficiency
+            batch_categories = self.categorize_prompt_batch_cuda(batch_prompts)
+            
+            # Process results
+            for i, (prompt_text, categories) in enumerate(zip(batch_prompts, batch_categories)):
                 if categories:
                     batch_successful += 1
                     successful_categorizations += 1
@@ -557,7 +616,7 @@ Categories:"""
                 print(f"  {cat}: {count:,} ({percentage:.1f}%)")
         
         # Save final results
-        self.save_comprehensive_results(all_categorized_prompts, batch_results)
+        self.save_comprehensive_results(all_categorized_prompts, batch_results, batch_size)
         
         return all_categorized_prompts
     
@@ -578,7 +637,7 @@ Categories:"""
         
         print(f"💾 Saved batch {current_batch}")
     
-    def save_comprehensive_results(self, categorized_prompts, batch_results):
+    def save_comprehensive_results(self, categorized_prompts, batch_results, batch_size):
         """Save comprehensive results from all prompts."""
         output_dir = Path("prompt_analysis")
         output_dir.mkdir(exist_ok=True)
@@ -605,7 +664,7 @@ Categories:"""
             'total_prompts_available': len(self.all_prompts),
             'success_rate': len(categorized_prompts) / len(self.all_prompts) if self.all_prompts else 0,
             'categories_discovered': len(self.category_distribution),
-            'batch_size_used': 100,
+            'batch_size_used': batch_size,
             'total_batches': len(batch_results),
             'processing_timestamp': datetime.now().isoformat()
         }

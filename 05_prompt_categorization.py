@@ -214,7 +214,7 @@ Text to categorize: {prompt_text}
 Categories:"""
     
     def categorize_batch(self, prompt_batch, max_length=512):
-        """Process a batch of prompts efficiently."""
+        """Process a batch of prompts and return raw model outputs."""
         if not self.model or not self.tokenizer:
             return [None] * len(prompt_batch)
         
@@ -249,19 +249,14 @@ Categories:"""
                     repetition_penalty=1.1
                 )
             
-            # Process outputs
+            # Extract raw text responses
             results = []
             for i, prompt_text in enumerate(prompt_batch):
                 prompt_length = inputs["input_ids"][i].shape[0]
                 generated_tokens = outputs[i][prompt_length:]
                 generated_text = self.tokenizer.decode(generated_tokens, skip_special_tokens=True)
                 
-                categories = self.parse_categories(generated_text)
-                results.append(categories)
-                
-                # Update distribution
-                for cat in categories:
-                    self.category_distribution[cat] += 1
+                results.append(generated_text)
             
             return results
             
@@ -269,39 +264,8 @@ Categories:"""
             print(f"❌ Batch processing error: {e}")
             return [None] * len(prompt_batch)
     
-    def parse_categories(self, response_text):
-        """Parse categories from model response."""
-        if not response_text:
-            return []
-        
-        # Clean response
-        response_clean = response_text.strip().lower()
-        if "response:" in response_clean:
-            response_clean = response_clean.split("response:")[-1].strip()
-        
-        # Split by separators
-        for separator in [',', ';', '\n', 'and', '&']:
-            if separator in response_clean:
-                parts = [p.strip() for p in response_clean.split(separator) if p.strip()]
-                break
-        else:
-            parts = [response_clean]
-        
-        # Validate categories
-        valid_categories = []
-        valid_keys = set(self.categories.keys())
-        
-        for part in parts:
-            part_clean = part.replace('category:', '').replace('categories:', '').strip()
-            if part_clean in valid_keys:
-                valid_categories.append(part_clean)
-            elif part_clean == 'other':
-                valid_categories.append('other')
-        
-        return valid_categories[:3]  # Max 3 categories
-    
     def run_categorization(self, max_prompts=20000, batch_size=400):
-        """Main categorization pipeline."""
+        """Main categorization pipeline - saves raw model outputs."""
         if not self.load_prompts():
             return
         
@@ -329,60 +293,40 @@ Categories:"""
             
             print(f"Batch {batch_num + 1}/{total_batches}: {start_idx + 1:,}-{end_idx:,}")
             
-            batch_results = self.categorize_batch(batch_prompts)
+            batch_responses = self.categorize_batch(batch_prompts)
             
-            # Store results - THIS IS NOW INSIDE THE LOOP!
-            for prompt, categories in zip(batch_prompts, batch_results):
+            # Store raw results
+            for prompt, response in zip(batch_prompts, batch_responses):
                 all_results.append({
-                    'prompt': prompt[:200] + "..." if len(prompt) > 200 else prompt,
-                    'categories': categories or [],
-                    'word_count': len(prompt.split()),
-                    'char_count': len(prompt)
+                    'prompt': prompt,
+                    'raw_response': response,
+                    'word_count': len(prompt.split())
                 })
         
         # Final results
         end_time = time.time()
         total_time = end_time - start_time
-        successful = sum(1 for r in all_results if r['categories'])
+        successful = sum(1 for r in all_results if r['raw_response'])
         
-        print(f"\n🎉 Complete! {successful:,}/{total_prompts:,} prompts categorized")
+        print(f"\n🎉 Complete! {successful:,}/{total_prompts:,} prompts processed")
         print(f"⚡ Performance: {total_time:.1f}s total, {total_prompts/total_time:.1f} prompts/second")
         
-        # Show top categories
-        if self.category_distribution:
-            print(f"\n🏆 Top categories:")
-            top_categories = sorted(self.category_distribution.items(), key=lambda x: x[1], reverse=True)[:10]
-            for cat, count in top_categories:
-                percentage = (count / total_prompts) * 100
-                print(f"  {cat}: {count:,} ({percentage:.1f}%)")
-        
-        # Save results
-        self.save_results(all_results)
+        # Save raw results
+        self.save_raw_results(all_results)
     
-    def save_results(self, results):
-        """Save results in simple JSON format."""
+    def save_raw_results(self, results):
+        """Save raw model outputs for later parsing."""
         output_dir = Path("prompt_analysis")
         output_dir.mkdir(exist_ok=True)
         
-        # Save categorized prompts
-        results_file = output_dir / "categorized_prompts.json"
-        with open(results_file, 'w', encoding='utf-8') as f:
+        # Save raw model outputs
+        raw_results_file = output_dir / "raw_model_outputs.json"
+        with open(raw_results_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
         
-        # Save category distribution
-        dist_file = output_dir / "category_distribution.json"
-        with open(dist_file, 'w', encoding='utf-8') as f:
-            json.dump(dict(self.category_distribution), f, indent=2)
-        
-        # Save category definitions for reference
-        categories_file = output_dir / "category_definitions.json"
-        with open(categories_file, 'w', encoding='utf-8') as f:
-            json.dump(self.categories, f, indent=2)
-        
-        print(f"\n💾 Results saved to prompt_analysis/")
-        print(f"  - categorized_prompts.json: {len(results):,} prompts")
-        print(f"  - category_distribution.json: Category counts")
-        print(f"  - category_definitions.json: Category explanations")
+        print(f"\n💾 Raw results saved to prompt_analysis/")
+        print(f"  - raw_model_outputs.json: {len(results):,} prompts with raw responses")
+        print(f"\n📝 Next step: Run parsing script to categorize the raw outputs")
 
 if __name__ == "__main__":
     categorizer = PromptCategorizer()

@@ -1,0 +1,9 @@
+{
+  "total_batches_with_raw_responses": 0,
+  "sample_raw_responses": [],
+  "response_patterns": {
+    "empty_responses": 0,
+    "very_short_responses": 0,
+    "typical_responses": 0
+  }
+}

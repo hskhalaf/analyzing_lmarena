@@ -363,24 +363,21 @@ class PromptCategorizer:
         """Create a prompt for the generative model to categorize the text."""
         categories_text = "\n".join([f"- {cat}: {desc}" for cat, desc in self.prompt_categories.items()])
         
-        # Use chat template format for Llama models
-        if hasattr(self.tokenizer, 'apply_chat_template'):
-            messages = [
-                {"role": "system", "content": f"You are a text categorization expert. Choose 1-3 most relevant categories from:\n\n{categories_text}\n\nRules:\n1. Respond with ONLY category names separated by commas\n2. No explanations or extra text\n3. Use 'other' if none fit well\n4. Be flexible with category matching\n\nExamples:\nPrompt: 'Solve this equation: 2x + 5 = 13'\nResponse: mathematical_reasoning, problem_solving\n\nPrompt: 'Write a story about a magical forest'\nResponse: creative_writing\n\nPrompt: 'What is the capital of France?'\nResponse: factual_qa\n\nPrompt: 'Explain how photosynthesis works'\nResponse: scientific_explanation\n\nPrompt: 'Random gibberish text'\nResponse: other"},
-                {"role": "user", "content": f"Categorize: {prompt_text}"}
-            ]
-            categorization_prompt = self.tokenizer.apply_chat_template(messages, tokenize=False)
-        else:
-            # Fallback to regular prompt format
-            categorization_prompt = f"""Categorize this text into 1-3 most relevant categories:
+        # Simplified, more direct prompt format
+        categorization_prompt = f"""Categorize this text into 1-3 most relevant categories from the list below.
 
+Available categories:
 {categories_text}
 
-Rules: Only category names separated by commas. No explanations.
+Rules:
+1. Respond with ONLY category names separated by commas
+2. No explanations, quotes, or extra text
+3. Use 'other' if none fit well
+4. Be flexible with category matching
 
 Examples:
 Prompt: 'Solve this equation: 2x + 5 = 13'
-Response: mathematical_reasoning, problem_solving
+Response: mathematical_reasoning
 
 Prompt: 'Write a story about a magical forest'
 Response: creative_writing
@@ -389,12 +386,12 @@ Prompt: 'What is the capital of France?'
 Response: factual_qa
 
 Prompt: 'Explain how photosynthesis works'
-Response: scientific_explanation
+Response: scientific
 
 Prompt: 'Random gibberish text'
 Response: other
 
-Text: "{prompt_text}"
+Text to categorize: {prompt_text}
 
 Categories:"""
         
@@ -535,6 +532,14 @@ Categories:"""
         # Clean response and extract categories
         response_clean = response_text.strip().lower()
         
+        # Handle the broken response format we're seeing
+        if "response:" in response_clean:
+            # Extract everything after "response:"
+            response_clean = response_clean.split("response:")[-1].strip()
+        
+        # Remove quotes and extra punctuation
+        response_clean = response_clean.replace('"', '').replace("'", '').strip()
+        
         # Check if response looks like a valid category list
         if not any(separator in response_clean for separator in [',', ';', '\n', 'and', '&']):
             # If no separators, check if it's a single valid category
@@ -612,13 +617,19 @@ Categories:"""
             batch_categorized = []
             batch_successful = 0
             
-            # Process prompts in true batches for efficiency
-            batch_categories, batch_raw_responses = self.categorize_prompt_batch_cuda(batch_prompts)
+                    # Process prompts in true batches for efficiency
+        batch_categories, batch_raw_responses = self.categorize_prompt_batch_cuda(batch_prompts)
+        
+        # DEBUG: Print raw responses info
+        print(f"DEBUG: Raw responses for batch {batch_num}: {len(batch_raw_responses) if batch_raw_responses else 'None'}")
+        if batch_raw_responses:
+            print(f"DEBUG: Sample raw response: {batch_raw_responses[0] if batch_raw_responses else 'None'}")
             
-            # DEBUG: Print raw responses info
-            print(f"DEBUG: Raw responses for batch {batch_num}: {len(batch_raw_responses) if batch_raw_responses else 'None'}")
-            if batch_raw_responses:
-                print(f"DEBUG: Sample raw response: {batch_raw_responses[0] if batch_raw_responses else 'None'}")
+            # Check if model is stuck in a pattern
+            unique_responses = set([r['raw_response'] for r in batch_raw_responses])
+            if len(unique_responses) <= 3:  # If very few unique responses, model might be stuck
+                print(f"⚠️  WARNING: Model appears stuck! Only {len(unique_responses)} unique responses out of {len(batch_raw_responses)} prompts")
+                print(f"   Sample responses: {list(unique_responses)[:3]}")
             
             # Process results
             for i, (prompt_text, categories) in enumerate(zip(batch_prompts, batch_categories)):

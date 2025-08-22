@@ -535,9 +535,10 @@ Categories:"""
                 generated_tokens = outputs[i][prompt_length:]
                 generated_text = self.tokenizer.decode(generated_tokens, skip_special_tokens=True)
                 
-                # Store raw response for debugging
+                # Store raw response for debugging - optimized string handling
+                prompt_preview = prompt_text[:100] + "..." if len(prompt_text) > 100 else prompt_text
                 raw_responses.append({
-                    'prompt': prompt_text[:100] + "..." if len(prompt_text) > 100 else prompt_text,
+                    'prompt': prompt_preview,
                     'raw_response': generated_text,
                     'response_length': len(generated_text)
                 })
@@ -581,8 +582,9 @@ Categories:"""
                 # Still no match, return empty
                 return []
         
-        # Split by common separators
+        # Split by common separators - more efficient approach
         categories = []
+        # Use the first separator found to avoid multiple loops
         for separator in [',', ';', '\n', 'and', '&']:
             if separator in response_clean:
                 parts = response_clean.split(separator)
@@ -592,18 +594,19 @@ Categories:"""
         # Filter to only include valid categories from our predefined list
         valid_categories = []
         valid_category_keys = [cat.lower() for cat in self.prompt_categories.keys()]
+        valid_category_set = set(valid_category_keys)  # Use set for O(1) lookup
         
         for cat in categories:
             # Clean the category name
             cat_clean = cat.replace('category:', '').replace('categories:', '').strip()
             
             # Check if it's a valid predefined category
-            if cat_clean in valid_category_keys:
+            if cat_clean in valid_category_set:
                 valid_categories.append(cat_clean)
             elif cat_clean == 'other':
                 valid_categories.append('other')
             else:
-                # Try partial matching for similar categories
+                # Try partial matching for similar categories - optimized with early break
                 for valid_cat in valid_category_keys:
                     if (cat_clean in valid_cat or valid_cat in cat_clean or 
                         any(word in valid_cat for word in cat_clean.split()) or
@@ -622,7 +625,7 @@ Categories:"""
         # Limit to 3 categories max (as per prompt instructions)
         return unique_categories[:3]
     
-    def run_cuda_categorization_on_all_prompts(self, batch_size=250, max_prompts=None):
+    def run_cuda_categorization_on_all_prompts(self, batch_size=400, max_prompts=None):
         """Run CUDA-accelerated categorization on all prompts with efficient batching."""
         if not self.all_prompts:
             print("❌ No prompts available for categorization")
@@ -636,6 +639,19 @@ Categories:"""
         print(f"📦 Batch size: {batch_size}")
         print(f"🔄 Total batches: {(total_prompts + batch_size - 1) // batch_size}")
         
+        # Performance monitoring
+        import time
+        start_time = time.time()
+        
+        # Create random selection of prompts
+        import random
+        if max_prompts and max_prompts < len(self.all_prompts):
+            # Randomly sample prompts for better representation
+            selected_prompts = random.sample(self.all_prompts, max_prompts)
+            print(f"🎲 Randomly selected {max_prompts:,} prompts from {len(self.all_prompts):,} total")
+        else:
+            selected_prompts = self.all_prompts
+        
         # Initialize tracking
         all_categorized_prompts = []
         successful_categorizations = 0
@@ -645,7 +661,7 @@ Categories:"""
         # Process in batches
         for batch_start in range(0, total_prompts, batch_size):
             batch_end = min(batch_start + batch_size, total_prompts)
-            batch_prompts = self.all_prompts[batch_start:batch_end]
+            batch_prompts = selected_prompts[batch_start:batch_end]
             batch_num = (batch_start // batch_size) + 1
             total_batches = (total_prompts + batch_size - 1) // batch_size
             
@@ -654,8 +670,8 @@ Categories:"""
             batch_categorized = []
             batch_successful = 0
             
-                    # Process prompts in true batches for efficiency
-        batch_categories, batch_raw_responses = self.categorize_prompt_batch_cuda(batch_prompts)
+            # Process prompts in true batches for efficiency
+            batch_categories, batch_raw_responses = self.categorize_prompt_batch_cuda(batch_prompts)
         
         # DEBUG: Print raw responses info
         print(f"DEBUG: Raw responses for batch {batch_num}: {len(batch_raw_responses) if batch_raw_responses else 'None'}")
@@ -674,12 +690,17 @@ Categories:"""
                     batch_successful += 1
                     successful_categorizations += 1
                     
+                    # Optimize string operations
+                    prompt_preview = prompt_text[:200] + "..." if len(prompt_text) > 200 else prompt_text
+                    word_count = len(prompt_text.split())
+                    char_count = len(prompt_text)
+                    
                     categorized_prompt = {
-                        'prompt': prompt_text[:200] + "..." if len(prompt_text) > 200 else prompt_text,
+                        'prompt': prompt_preview,
                         'full_prompt': prompt_text,
                         'categories': categories,
-                        'word_count': len(prompt_text.split()),
-                        'char_count': len(prompt_text),
+                        'word_count': word_count,
+                        'char_count': char_count,
                         'batch': batch_num
                     }
                     
@@ -715,6 +736,13 @@ Categories:"""
         # Final results
         print(f"\n🎉 COMPLETE! {successful_categorizations:,}/{total_prompts:,} prompts categorized")
         print(f"📊 Success rate: {(successful_categorizations/total_prompts)*100:.1f}%")
+        
+        # Performance metrics
+        end_time = time.time()
+        total_time = end_time - start_time
+        prompts_per_second = total_prompts / total_time if total_time > 0 else 0
+        print(f"⚡ Performance: {total_time:.1f}s total, {prompts_per_second:.1f} prompts/second")
+        print(f"📦 Average batch time: {total_time / ((total_prompts + batch_size - 1) // batch_size):.2f}s per batch")
         
         # Show top categories
         if self.category_distribution:
@@ -876,7 +904,8 @@ Categories:"""
             
             # You can limit the number of prompts for testing
             # self.run_cuda_categorization_on_all_prompts(max_prompts=1000)  # Test with 1000 first
-            self.run_cuda_categorization_on_all_prompts(max_prompts=100)  # Test with 100 first
+            # self.run_cuda_categorization_on_all_prompts(max_prompts=100)  # Test with 100 first
+            self.run_cuda_categorization_on_all_prompts(batch_size=400, max_prompts=20000)  # Random selection of 20,000 prompts with batch size 400
         else:
             print("⚠️  Model loading failed, continuing with external analysis only")
         

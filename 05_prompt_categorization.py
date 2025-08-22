@@ -76,15 +76,93 @@ class PromptCategorizer:
         with open(cache_file, 'rb') as f:
             dataset = pickle.load(f)
         
+        print(f"🔍 Dataset structure: {list(dataset.keys())}")
+        print(f"📊 Train examples: {len(dataset['train']):,}")
+        
+        # Debug: Check first few examples to understand structure
+        if dataset['train']:
+            first_example = dataset['train'][0]
+            print(f"🔍 First example keys: {list(first_example.keys())}")
+            if 'conversations' in first_example:
+                print(f"🔍 Conversations structure: {type(first_example['conversations'])}")
+                if first_example['conversations']:
+                    print(f"🔍 First conversation: {first_example['conversations'][0]}")
+        
         prompts = []
-        for example in dataset['train']:
+        for i, example in enumerate(dataset['train']):
+            if i % 10000 == 0:
+                print(f"Processing example {i:,}/{len(dataset['train']):,}")
+            
+            # Try multiple conversation formats
+            prompt = None
+            
+            # Method 1: Try 'conversations' field
             if 'conversations' in example and example['conversations']:
-                first_message = example['conversations'][0]
-                if 'content' in first_message:
-                    prompts.append(first_message['content'])
+                conv = example['conversations']
+                if isinstance(conv, list) and len(conv) > 0:
+                    first_msg = conv[0]
+                    if isinstance(first_msg, dict) and 'content' in first_msg:
+                        prompt = first_msg['content']
+            
+            # Method 2: Try 'conversation_a' field
+            if not prompt and 'conversation_a' in example and example['conversation_a']:
+                conv_a = example['conversation_a']
+                if isinstance(conv_a, list) and len(conv_a) > 0:
+                    first_msg = conv_a[0]
+                    if isinstance(first_msg, dict) and 'content' in first_msg:
+                        content = first_msg['content']
+                        if isinstance(content, list) and len(content) > 0:
+                            if 'text' in content[0]:
+                                prompt = content[0]['text']
+            
+            # Method 3: Try 'conversation_b' field
+            if not prompt and 'conversation_b' in example and example['conversation_b']:
+                conv_b = example['conversation_b']
+                if isinstance(conv_b, list) and len(conv_b) > 0:
+                    first_msg = conv_b[0]
+                    if isinstance(first_msg, dict) and 'content' in first_msg:
+                        content = first_msg['content']
+                        if isinstance(content, list) and len(content) > 0:
+                            if 'text' in content[0]:
+                                prompt = content[0]['text']
+            
+            # Method 4: Try 'full_conversation' field
+            if not prompt and 'full_conversation' in example and example['full_conversation']:
+                full_conv = example['full_conversation']
+                if isinstance(full_conv, list) and len(full_conv) > 0:
+                    user_msg = full_conv[0].get('user', {})
+                    if 'content' in user_msg:
+                        content = user_msg['content']
+                        if isinstance(content, list) and len(content) > 0:
+                            if 'text' in content[0]:
+                                prompt = content[0]['text']
+            
+            # Method 5: Try direct 'prompt' field
+            if not prompt and 'prompt' in example:
+                prompt = example['prompt']
+            
+            # Method 6: Try 'question' field
+            if not prompt and 'question' in example:
+                prompt = example['question']
+            
+            # Clean and validate prompt
+            if prompt and isinstance(prompt, str):
+                prompt = prompt.strip()
+                if len(prompt) > 10:  # Minimum length filter
+                    prompts.append(prompt)
         
         self.prompts = prompts
         print(f"✅ Loaded {len(prompts):,} prompts")
+        
+        if len(prompts) == 0:
+            print("⚠️  No prompts found! Debugging dataset structure...")
+            if dataset['train']:
+                sample_example = dataset['train'][0]
+                print(f"Sample example keys: {list(sample_example.keys())}")
+                for key in sample_example.keys():
+                    if isinstance(sample_example[key], (str, list, dict)):
+                        print(f"  {key}: {type(sample_example[key])} - {str(sample_example[key])[:200]}")
+        
         return True
     
     def create_categorization_prompt(self, prompt_text):

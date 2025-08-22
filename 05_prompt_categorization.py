@@ -296,6 +296,19 @@ class PromptCategorizer:
         # Basic cleaning
         cleaned = prompt.strip()
         
+        # Fix Unicode escape sequences
+        try:
+            # Handle Unicode escape sequences like \u4f60
+            if '\\u' in cleaned:
+                cleaned = cleaned.encode('utf-8').decode('unicode_escape')
+            
+            # Normalize Unicode characters
+            import unicodedata
+            cleaned = unicodedata.normalize('NFKC', cleaned)
+        except (UnicodeDecodeError, UnicodeEncodeError):
+            # If Unicode processing fails, try to clean what we can
+            pass
+        
         # Remove very short prompts (keep this filter)
         if len(cleaned) < 10:
             return None
@@ -363,19 +376,21 @@ class PromptCategorizer:
         """Create a prompt for the generative model to categorize the text."""
         categories_text = "\n".join([f"- {cat}: {desc}" for cat, desc in self.prompt_categories.items()])
         
-        # Simplified, more direct prompt format
+        # Enhanced prompt with better examples and clearer instructions
         categorization_prompt = f"""Categorize this text into 1-3 most relevant categories from the list below.
 
 Available categories:
 {categories_text}
 
-Rules:
-1. Respond with ONLY category names separated by commas
-2. No explanations, quotes, or extra text
-3. Use 'other' if none fit well
-4. Be flexible with category matching
+IMPORTANT RULES:
+1. Choose EXACTLY 1-3 categories (no more, no less)
+2. Each category can only appear ONCE
+3. Respond with ONLY category names separated by commas
+4. No explanations, quotes, or extra text
+5. Use 'other' if none fit well
+6. Be precise - don't over-categorize
 
-Examples:
+EXAMPLES:
 Prompt: 'Solve this equation: 2x + 5 = 13'
 Response: mathematical_reasoning
 
@@ -387,6 +402,12 @@ Response: factual_qa
 
 Prompt: 'Explain how photosynthesis works'
 Response: scientific
+
+Prompt: 'Compare iPhone vs Android features'
+Response: comparison
+
+Prompt: 'Create a logo design for my company'
+Response: artistic_creation
 
 Prompt: 'Random gibberish text'
 Response: other
@@ -583,7 +604,16 @@ Categories:"""
                         valid_categories.append(valid_cat)
                         break
         
-        return valid_categories[:5]  # Limit to 5 categories max
+        # Remove duplicates while preserving order
+        seen = set()
+        unique_categories = []
+        for cat in valid_categories:
+            if cat not in seen:
+                seen.add(cat)
+                unique_categories.append(cat)
+        
+        # Limit to 3 categories max (as per prompt instructions)
+        return unique_categories[:3]
     
     def run_cuda_categorization_on_all_prompts(self, batch_size=250, max_prompts=None):
         """Run CUDA-accelerated categorization on all prompts with efficient batching."""
@@ -684,8 +714,8 @@ Categories:"""
             print(f"🏆 Top categories:")
             top_categories = sorted(self.category_distribution.items(), key=lambda x: x[1], reverse=True)[:10]
             for cat, count in top_categories:
-                percentage = (count / successful_categorizations) * 100
-                print(f"  {cat}: {count:,} ({percentage:.1f}%)")
+                percentage = (count / total_prompts) * 100  # Base percentage on total prompts, not successful categorizations
+                print(f"  {cat}: {count:,} ({percentage:.1f}% of prompts)")
         
         # Save final results
         self.save_comprehensive_results(all_categorized_prompts, batch_results, batch_size)

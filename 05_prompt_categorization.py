@@ -122,7 +122,6 @@ class PromptCategorizer:
                 torch_dtype=torch.float16 if self.device.type == "cuda" else torch.float32,
                 use_safetensors=True,  # Force use of safetensors format
                 device_map=None,  # Don't use device_map to avoid accelerate dependency
-                low_cpu_mem_usage=True,  # Reduce memory usage during loading
                 trust_remote_code=True  # Required for Llama models
             )
             
@@ -705,12 +704,12 @@ Categories:"""
             
             print(f"  ✅ {batch_successful}/{len(batch_prompts)} successful")
             
-                    # Save intermediate results every 5 batches
-        if batch_num % 5 == 0:
+                    # Save intermediate results every 10 batches (less frequent)
+        if batch_num % 10 == 0:
             self.save_intermediate_results(all_categorized_prompts, batch_results, batch_num)
             
-        # Save raw responses for debugging every 10 batches
-        if batch_num % 10 == 0:
+        # Save raw responses for debugging every 20 batches (much less frequent)
+        if batch_num % 20 == 0:
             self.save_raw_responses_debug(batch_raw_responses, batch_num)
         
         # Final results
@@ -735,15 +734,19 @@ Categories:"""
         output_dir = Path("prompt_analysis")
         output_dir.mkdir(exist_ok=True)
         
+        # Save only essential data: prompt + categories + id
+        essential_results = []
+        for item in categorized_prompts:
+            essential_results.append({
+                'id': item.get('id', 'unknown'),
+                'prompt': item.get('prompt', ''),
+                'categories': item.get('categories', [])
+            })
+        
         # Save intermediate categorized prompts
         intermediate_file = output_dir / f"cuda_categorization_intermediate_batch_{current_batch}.json"
         with open(intermediate_file, 'w', encoding='utf-8') as f:
-            json.dump(categorized_prompts, f, indent=2)
-        
-        # Save batch progress
-        progress_file = output_dir / f"batch_progress_batch_{current_batch}.json"
-        with open(progress_file, 'w', encoding='utf-8') as f:
-            json.dump(batch_results, f, indent=2)
+            json.dump(essential_results, f, indent=2)
         
         print(f"💾 Saved batch {current_batch}")
     
@@ -778,58 +781,33 @@ Categories:"""
         output_dir = Path("prompt_analysis")
         output_dir.mkdir(exist_ok=True)
         
+        # Save only essential data: prompt + categories + id
+        essential_results = []
+        for item in categorized_prompts:
+            essential_results.append({
+                'id': item.get('id', 'unknown'),
+                'prompt': item.get('prompt', ''),
+                'categories': item.get('categories', [])
+            })
+        
         # Save all categorized prompts
         all_results_file = output_dir / "cuda_categorization_all_prompts.json"
         with open(all_results_file, 'w', encoding='utf-8') as f:
-            json.dump(categorized_prompts, f, indent=2)
+            json.dump(essential_results, f, indent=2)
         
-        # Save batch summary
-        batch_summary_file = output_dir / "batch_processing_summary.json"
-        with open(batch_summary_file, 'w', encoding='utf-8') as f:
-            json.dump(batch_results, f, indent=2)
-        
-        # Save comprehensive category distribution
-        comprehensive_dist_file = output_dir / "comprehensive_category_distribution.json"
-        with open(comprehensive_dist_file, 'w', encoding='utf-8') as f:
+        # Save category distribution
+        category_dist_file = output_dir / "category_distribution.json"
+        with open(category_dist_file, 'w', encoding='utf-8') as f:
             json.dump(dict(self.category_distribution), f, indent=2)
         
-        # Save raw responses summary for debugging
-        raw_responses_summary_file = output_dir / "raw_responses_debug_summary.json"
-        raw_summary = {
-            'total_batches_with_raw_responses': len([f for f in output_dir.glob("raw_model_responses_batch_*.json")]),
-            'sample_raw_responses': [],
-            'response_patterns': {
-                'empty_responses': 0,
-                'very_short_responses': 0,
-                'typical_responses': 0
-            }
-        }
-        
-        # Collect sample responses from first few batch files
-        for i in range(1, min(6, raw_summary['total_batches_with_raw_responses'] + 1)):
-            batch_file = output_dir / f"raw_model_responses_batch_{i}.json"
-            if batch_file.exists():
-                try:
-                    with open(batch_file, 'r', encoding='utf-8') as f:
-                        batch_data = json.load(f)
-                        if batch_data:
-                            raw_summary['sample_raw_responses'].extend(batch_data[:3])  # First 3 from each batch
-                except:
-                    pass
-        
-        with open(raw_responses_summary_file, 'w', encoding='utf-8') as f:
-            json.dump(raw_summary, f, indent=2)
-        
-        # Save processing statistics
-        stats_file = output_dir / "comprehensive_processing_stats.json"
+        # Save basic processing stats
+        stats_file = output_dir / "processing_stats.json"
         stats_data = {
             'total_prompts_processed': len(categorized_prompts),
-            'total_prompts_available': len(self.all_prompts),
             'success_rate': len(categorized_prompts) / len(self.all_prompts) if self.all_prompts else 0,
             'categories_discovered': len(self.category_distribution),
             'batch_size_used': batch_size,
-            'total_batches': len(batch_results),
-            'processing_timestamp': datetime.now().isoformat()
+            'total_batches': len(batch_results)
         }
         with open(stats_file, 'w', encoding='utf-8') as f:
             json.dump(stats_data, f, indent=2)
@@ -841,68 +819,38 @@ Categories:"""
         output_dir = Path("prompt_analysis")
         output_dir.mkdir(exist_ok=True)
         
-        # Save all prompts
-        prompts_file = output_dir / "all_prompts.txt"
-        with open(prompts_file, 'w', encoding='utf-8', errors='replace') as f:
-            for i, prompt in enumerate(self.all_prompts):
-                f.write(f"=== PROMPT {i+1} ===\n")
-                # Handle any problematic Unicode characters
-                try:
-                    f.write(f"{prompt}\n\n")
-                except UnicodeEncodeError:
-                    # Replace problematic characters with replacement character
-                    safe_prompt = prompt.encode('utf-8', errors='replace').decode('utf-8')
-                    f.write(f"{safe_prompt}\n\n")
+        # Save only essential prompt data
+        essential_prompts = []
+        for i, prompt in enumerate(self.all_prompts):
+            essential_prompts.append({
+                'id': i + 1,
+                'prompt': prompt
+            })
         
-        # Save sample prompts with categorization prompts
-        samples_file = output_dir / "sample_prompts_with_categorization.txt"
-        with open(samples_file, 'w', encoding='utf-8', errors='replace') as f:
-            f.write("SAMPLE PROMPTS WITH CATEGORIZATION PROMPTS\n")
-            f.write("="*80 + "\n\n")
-            
-            for i, sample in enumerate(self.prompt_samples[:50]):  # First 50 samples
-                f.write(f"=== SAMPLE {i+1} ===\n")
-                f.write(f"Original prompt: {sample['prompt']}\n")
-                f.write(f"Word count: {sample['word_count']}\n")
-                f.write(f"Character count: {sample['char_count']}\n\n")
-                
-                categorization_prompt = self.create_categorization_prompt(sample['prompt'])
-                f.write(f"CATEGORIZATION PROMPT:\n{categorization_prompt}\n")
-                f.write("-" * 80 + "\n\n")
+        # Save essential prompts
+        prompts_file = output_dir / "all_prompts.json"
+        with open(prompts_file, 'w', encoding='utf-8', errors='replace') as f:
+            json.dump(essential_prompts, f, indent=2, ensure_ascii=False)
         
         # Save category definitions
         categories_file = output_dir / "category_definitions.json"
         with open(categories_file, 'w', encoding='utf-8') as f:
             json.dump(self.prompt_categories, f, indent=2)
         
-        # Save prompt statistics
+        # Save basic prompt statistics
         stats_file = output_dir / "prompt_statistics.json"
         stats_data = {
             'total_prompts': len(self.all_prompts),
-            'sample_count': len(self.prompt_samples),
-            'length_statistics': {
-                'word_count': {
-                    'mean': sum(self.prompt_length_stats['word_count']) / len(self.prompt_length_stats['word_count']) if self.prompt_length_stats['word_count'] else 0,
-                    'median': sorted(self.prompt_length_stats['word_count'])[len(self.prompt_length_stats['word_count'])//2] if self.prompt_length_stats['word_count'] else 0,
-                    'min': min(self.prompt_length_stats['word_count']) if self.prompt_length_stats['word_count'] else 0,
-                    'max': max(self.prompt_length_stats['word_count']) if self.prompt_length_stats['word_count'] else 0
-                },
-                'char_count': {
-                    'mean': sum(self.prompt_length_stats['char_count']) / len(self.prompt_length_stats['char_count']) if self.prompt_length_stats['char_count'] else 0,
-                    'median': sorted(self.prompt_length_stats['char_count'])[len(self.prompt_length_stats['char_count'])//2] if self.prompt_length_stats['char_count'] else 0,
-                    'min': min(self.prompt_length_stats['char_count']) if self.prompt_length_stats['char_count'] else 0,
-                    'max': max(self.prompt_length_stats['char_count']) if self.prompt_length_stats['char_count'] else 0
-                }
-            }
+            'average_words': sum(self.prompt_length_stats['word_count']) / len(self.prompt_length_stats['word_count']) if self.prompt_length_stats['word_count'] else 0,
+            'average_chars': sum(self.prompt_length_stats['char_count']) / len(self.prompt_length_stats['char_count']) if self.prompt_length_stats['char_count'] else 0
         }
         with open(stats_file, 'w', encoding='utf-8') as f:
             json.dump(stats_data, f, indent=2)
         
-        print(f"\n💾 Prompt analysis files saved to: {output_dir}/")
-        print(f"  - all_prompts.txt: {len(self.all_prompts):,} prompts")
-        print(f"  - sample_prompts_with_categorization.txt: {len(self.prompt_samples)} samples with categorization prompts")
+        print(f"💾 Prompt analysis files saved to: prompt_analysis/")
+        print(f"  - all_prompts.json: {len(self.all_prompts):,} prompts")
         print(f"  - category_definitions.json: Category definitions")
-        print(f"  - prompt_statistics.json: Statistical analysis")
+        print(f"  - prompt_statistics.json: Basic statistics")
         
         return output_dir
     
@@ -1000,18 +948,18 @@ Categories:"""
         output_dir.mkdir(exist_ok=True)
         
         # Save CUDA categorization results
-        cuda_results_file = output_dir / "cuda_categorization_results.json"
+        cuda_results_file = output_dir / "categorization_results.json"
         with open(cuda_results_file, 'w', encoding='utf-8') as f:
             json.dump(categorized_prompts, f, indent=2)
         
         # Save category distribution
-        category_dist_file = output_dir / "cuda_category_distribution.json"
+        category_dist_file = output_dir / "category_distribution.json"
         with open(category_dist_file, 'w', encoding='utf-8') as f:
             json.dump(dict(self.category_distribution), f, indent=2)
         
-        print(f"\n💾 CUDA categorization results saved:")
-        print(f"  - cuda_categorization_results.json: {len(categorized_prompts)} categorized prompts")
-        print(f"  - cuda_category_distribution.json: Category distribution")
+        print(f"\n💾 Categorization results saved:")
+        print(f"  - categorization_results.json: {len(categorized_prompts)} categorized prompts")
+        print(f"  - category_distribution.json: Category distribution")
 
 if __name__ == "__main__":
     categorizer = PromptCategorizer()

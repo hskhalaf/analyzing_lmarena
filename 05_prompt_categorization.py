@@ -503,17 +503,25 @@ Categories:"""
             
             # Process all outputs
             all_categories = []
+            raw_responses = []  # Store raw responses for debugging
             for i, prompt_text in enumerate(prompt_texts):
                 # Extract the generated part for this specific prompt
                 prompt_length = inputs["input_ids"][i].shape[0]
                 generated_tokens = outputs[i][prompt_length:]
                 generated_text = self.tokenizer.decode(generated_tokens, skip_special_tokens=True)
                 
+                # Store raw response for debugging
+                raw_responses.append({
+                    'prompt': prompt_text[:100] + "..." if len(prompt_text) > 100 else prompt_text,
+                    'raw_response': generated_text,
+                    'response_length': len(generated_text)
+                })
+                
                 # Parse categories from response
                 categories = self.parse_categorization_response(generated_text)
                 all_categories.append(categories)
             
-            return all_categories
+            return all_categories, raw_responses
             
         except Exception as e:
             print(f"❌ Error in batch CUDA categorization: {e}")
@@ -605,7 +613,7 @@ Categories:"""
             batch_successful = 0
             
             # Process prompts in true batches for efficiency
-            batch_categories = self.categorize_prompt_batch_cuda(batch_prompts)
+            batch_categories, batch_raw_responses = self.categorize_prompt_batch_cuda(batch_prompts)
             
             # Process results
             for i, (prompt_text, categories) in enumerate(zip(batch_prompts, batch_categories)):
@@ -643,9 +651,13 @@ Categories:"""
             
             print(f"  ✅ {batch_successful}/{len(batch_prompts)} successful")
             
-            # Save intermediate results every 5 batches
-            if batch_num % 5 == 0:
-                self.save_intermediate_results(all_categorized_prompts, batch_results, batch_num)
+                    # Save intermediate results every 5 batches
+        if batch_num % 5 == 0:
+            self.save_intermediate_results(all_categorized_prompts, batch_results, batch_num)
+            
+        # Save raw responses for debugging every 10 batches
+        if batch_num % 10 == 0:
+            self.save_raw_responses_debug(batch_raw_responses, batch_num)
         
         # Final results
         print(f"\n🎉 COMPLETE! {successful_categorizations:,}/{total_prompts:,} prompts categorized")
@@ -681,6 +693,32 @@ Categories:"""
         
         print(f"💾 Saved batch {current_batch}")
     
+    def save_raw_responses_debug(self, raw_responses, batch_num):
+        """Save raw model responses for debugging categorization issues."""
+        output_dir = Path("prompt_analysis")
+        output_dir.mkdir(exist_ok=True)
+        
+        # Save raw responses for this batch
+        raw_responses_file = output_dir / f"raw_model_responses_batch_{batch_num}.json"
+        with open(raw_responses_file, 'w', encoding='utf-8') as f:
+            json.dump(raw_responses, f, indent=2)
+        
+        # Also save a summary of response patterns
+        response_summary = {
+            'batch_num': batch_num,
+            'total_responses': len(raw_responses),
+            'response_lengths': [r['response_length'] for r in raw_responses],
+            'sample_responses': raw_responses[:5],  # First 5 responses
+            'empty_responses': len([r for r in raw_responses if not r['raw_response'].strip()]),
+            'very_short_responses': len([r for r in raw_responses if len(r['raw_response'].strip()) < 5])
+        }
+        
+        summary_file = output_dir / f"response_summary_batch_{batch_num}.json"
+        with open(summary_file, 'w', encoding='utf-8') as f:
+            json.dump(response_summary, f, indent=2)
+        
+        print(f"🔍 Saved raw responses debug info for batch {batch_num}")
+    
     def save_comprehensive_results(self, categorized_prompts, batch_results, batch_size):
         """Save comprehensive results from all prompts."""
         output_dir = Path("prompt_analysis")
@@ -700,6 +738,33 @@ Categories:"""
         comprehensive_dist_file = output_dir / "comprehensive_category_distribution.json"
         with open(comprehensive_dist_file, 'w', encoding='utf-8') as f:
             json.dump(dict(self.category_distribution), f, indent=2)
+        
+        # Save raw responses summary for debugging
+        raw_responses_summary_file = output_dir / "raw_responses_debug_summary.json"
+        raw_summary = {
+            'total_batches_with_raw_responses': len([f for f in output_dir.glob("raw_model_responses_batch_*.json")]),
+            'sample_raw_responses': [],
+            'response_patterns': {
+                'empty_responses': 0,
+                'very_short_responses': 0,
+                'typical_responses': 0
+            }
+        }
+        
+        # Collect sample responses from first few batch files
+        for i in range(1, min(6, raw_summary['total_batches_with_raw_responses'] + 1)):
+            batch_file = output_dir / f"raw_model_responses_batch_{i}.json"
+            if batch_file.exists():
+                try:
+                    with open(batch_file, 'r', encoding='utf-8') as f:
+                        batch_data = json.load(f)
+                        if batch_data:
+                            raw_summary['sample_raw_responses'].extend(batch_data[:3])  # First 3 from each batch
+                except:
+                    pass
+        
+        with open(raw_responses_summary_file, 'w', encoding='utf-8') as f:
+            json.dump(raw_summary, f, indent=2)
         
         # Save processing statistics
         stats_file = output_dir / "comprehensive_processing_stats.json"
@@ -803,7 +868,7 @@ Categories:"""
             
             # You can limit the number of prompts for testing
             # self.run_cuda_categorization_on_all_prompts(max_prompts=1000)  # Test with 1000 first
-            self.run_cuda_categorization_on_all_prompts()  # Process all 130,596 prompts
+            self.run_cuda_categorization_on_all_prompts(max_prompts=100)  # Test with 100 first
         else:
             print("⚠️  Model loading failed, continuing with external analysis only")
         

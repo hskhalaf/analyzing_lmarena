@@ -843,14 +843,20 @@ Categories:"""
         
         # Save all prompts
         prompts_file = output_dir / "all_prompts.txt"
-        with open(prompts_file, 'w', encoding='utf-8') as f:
+        with open(prompts_file, 'w', encoding='utf-8', errors='replace') as f:
             for i, prompt in enumerate(self.all_prompts):
                 f.write(f"=== PROMPT {i+1} ===\n")
-                f.write(f"{prompt}\n\n")
+                # Handle any problematic Unicode characters
+                try:
+                    f.write(f"{prompt}\n\n")
+                except UnicodeEncodeError:
+                    # Replace problematic characters with replacement character
+                    safe_prompt = prompt.encode('utf-8', errors='replace').decode('utf-8')
+                    f.write(f"{safe_prompt}\n\n")
         
         # Save sample prompts with categorization prompts
         samples_file = output_dir / "sample_prompts_with_categorization.txt"
-        with open(samples_file, 'w', encoding='utf-8') as f:
+        with open(samples_file, 'w', encoding='utf-8', errors='replace') as f:
             f.write("SAMPLE PROMPTS WITH CATEGORIZATION PROMPTS\n")
             f.write("="*80 + "\n\n")
             

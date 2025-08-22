@@ -46,7 +46,7 @@ class PromptCategorizer:
     def load_model(self, model_name="meta-llama/Llama-3.2-3B-Instruct"):
         """Load model with minimal configuration."""
         try:
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side='left')
             if self.tokenizer.pad_token is None:
                 self.tokenizer.pad_token = self.tokenizer.eos_token
             
@@ -83,67 +83,78 @@ class PromptCategorizer:
         if dataset['train']:
             first_example = dataset['train'][0]
             print(f"🔍 First example keys: {list(first_example.keys())}")
-            if 'conversations' in first_example:
-                print(f"🔍 Conversations structure: {type(first_example['conversations'])}")
-                if first_example['conversations']:
-                    print(f"🔍 First conversation: {first_example['conversations'][0]}")
+            
+            # Debug conversation_a structure
+            if 'conversation_a' in first_example:
+                conv_a = first_example['conversation_a']
+                print(f"🔍 conversation_a type: {type(conv_a)}")
+                if isinstance(conv_a, list) and len(conv_a) > 0:
+                    print(f"🔍 conversation_a[0]: {conv_a[0]}")
+                    if isinstance(conv_a[0], dict):
+                        print(f"🔍 conversation_a[0] keys: {list(conv_a[0].keys())}")
         
         prompts = []
         for i, example in enumerate(dataset['train']):
             if i % 10000 == 0:
                 print(f"Processing example {i:,}/{len(dataset['train']):,}")
             
-            # Try multiple conversation formats
+            # Try to extract prompt from conversation_a (first conversation)
             prompt = None
             
-            # Method 1: Try 'conversations' field
-            if 'conversations' in example and example['conversations']:
-                conv = example['conversations']
-                if isinstance(conv, list) and len(conv) > 0:
-                    first_msg = conv[0]
-                    if isinstance(first_msg, dict) and 'content' in first_msg:
-                        prompt = first_msg['content']
-            
-            # Method 2: Try 'conversation_a' field
-            if not prompt and 'conversation_a' in example and example['conversation_a']:
+            if 'conversation_a' in example and example['conversation_a']:
                 conv_a = example['conversation_a']
                 if isinstance(conv_a, list) and len(conv_a) > 0:
-                    first_msg = conv_a[0]
-                    if isinstance(first_msg, dict) and 'content' in first_msg:
-                        content = first_msg['content']
-                        if isinstance(content, list) and len(content) > 0:
-                            if 'text' in content[0]:
-                                prompt = content[0]['text']
+                    # Look for the first user message
+                    for msg in conv_a:
+                        if isinstance(msg, dict):
+                            # Check if this is a user message
+                            if msg.get('role') == 'user' or 'user' in msg:
+                                if 'content' in msg:
+                                    content = msg['content']
+                                    if isinstance(content, str):
+                                        prompt = content
+                                        break
+                                    elif isinstance(content, list) and len(content) > 0:
+                                        # Handle content as list of blocks
+                                        for block in content:
+                                            if isinstance(block, dict) and 'text' in block:
+                                                prompt = block['text']
+                                                break
+                                        if prompt:
+                                            break
+                            # Also try to find the first message if role is not specified
+                            elif 'content' in msg and not prompt:
+                                content = msg['content']
+                                if isinstance(content, str):
+                                    prompt = content
+                                    break
+                                elif isinstance(content, list) and len(content) > 0:
+                                    for block in content:
+                                        if isinstance(block, dict) and 'text' in block:
+                                            prompt = block['text']
+                                            break
+                                    if prompt:
+                                        break
             
-            # Method 3: Try 'conversation_b' field
+            # If no prompt found in conversation_a, try conversation_b
             if not prompt and 'conversation_b' in example and example['conversation_b']:
                 conv_b = example['conversation_b']
                 if isinstance(conv_b, list) and len(conv_b) > 0:
-                    first_msg = conv_b[0]
-                    if isinstance(first_msg, dict) and 'content' in first_msg:
-                        content = first_msg['content']
-                        if isinstance(content, list) and len(content) > 0:
-                            if 'text' in content[0]:
-                                prompt = content[0]['text']
-            
-            # Method 4: Try 'full_conversation' field
-            if not prompt and 'full_conversation' in example and example['full_conversation']:
-                full_conv = example['full_conversation']
-                if isinstance(full_conv, list) and len(full_conv) > 0:
-                    user_msg = full_conv[0].get('user', {})
-                    if 'content' in user_msg:
-                        content = user_msg['content']
-                        if isinstance(content, list) and len(content) > 0:
-                            if 'text' in content[0]:
-                                prompt = content[0]['text']
-            
-            # Method 5: Try direct 'prompt' field
-            if not prompt and 'prompt' in example:
-                prompt = example['prompt']
-            
-            # Method 6: Try 'question' field
-            if not prompt and 'question' in example:
-                prompt = example['question']
+                    for msg in conv_b:
+                        if isinstance(msg, dict):
+                            if msg.get('role') == 'user' or 'user' in msg:
+                                if 'content' in msg:
+                                    content = msg['content']
+                                    if isinstance(content, str):
+                                        prompt = content
+                                        break
+                                    elif isinstance(content, list) and len(content) > 0:
+                                        for block in content:
+                                            if isinstance(block, dict) and 'text' in block:
+                                                prompt = block['text']
+                                                break
+                                        if prompt:
+                                            break
             
             # Clean and validate prompt
             if prompt and isinstance(prompt, str):
@@ -159,9 +170,12 @@ class PromptCategorizer:
             if dataset['train']:
                 sample_example = dataset['train'][0]
                 print(f"Sample example keys: {list(sample_example.keys())}")
-                for key in sample_example.keys():
-                    if isinstance(sample_example[key], (str, list, dict)):
-                        print(f"  {key}: {type(sample_example[key])} - {str(sample_example[key])[:200]}")
+                if 'conversation_a' in sample_example:
+                    conv_a = sample_example['conversation_a']
+                    print(f"conversation_a: {conv_a}")
+                if 'conversation_b' in sample_example:
+                    conv_b = sample_example['conversation_b']
+                    print(f"conversation_b: {conv_b}")
         
         return True
     

@@ -298,15 +298,23 @@ class PromptCategorizer:
         
         # Fix Unicode escape sequences
         try:
-            # Handle Unicode escape sequences like \u4f60
-            if '\\u' in cleaned:
-                cleaned = cleaned.encode('utf-8').decode('unicode_escape')
+            # Handle only actual Unicode escape sequences like \u4f60
+            # Use regex to find and replace only valid Unicode escapes
+            import re
+            def replace_unicode_escapes(match):
+                try:
+                    return chr(int(match.group(1), 16))
+                except (ValueError, OverflowError):
+                    return match.group(0)  # Keep original if invalid
+            
+            # Replace only valid \uXXXX patterns
+            cleaned = re.sub(r'\\u([0-9a-fA-F]{4})', replace_unicode_escapes, cleaned)
             
             # Normalize Unicode characters
             import unicodedata
             cleaned = unicodedata.normalize('NFKC', cleaned)
-        except (UnicodeDecodeError, UnicodeEncodeError):
-            # If Unicode processing fails, try to clean what we can
+        except Exception:
+            # If Unicode processing fails, keep original text
             pass
         
         # Remove very short prompts (keep this filter)

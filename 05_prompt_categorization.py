@@ -615,6 +615,11 @@ Categories:"""
             # Process prompts in true batches for efficiency
             batch_categories, batch_raw_responses = self.categorize_prompt_batch_cuda(batch_prompts)
             
+            # DEBUG: Print raw responses info
+            print(f"DEBUG: Raw responses for batch {batch_num}: {len(batch_raw_responses) if batch_raw_responses else 'None'}")
+            if batch_raw_responses:
+                print(f"DEBUG: Sample raw response: {batch_raw_responses[0] if batch_raw_responses else 'None'}")
+            
             # Process results
             for i, (prompt_text, categories) in enumerate(zip(batch_prompts, batch_categories)):
                 if categories:

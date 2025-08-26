@@ -1,6 +1,6 @@
 # Analyzing LM Arena
 
-Analysis of Language Model Arena dataset for model performance, battle trends, and prompt categorization.
+Analysis of LMArena dataset for model performance, battle trends, and prompt categorization.
 
 ## Files
 - `01_explore_data.py` - Data exploration
